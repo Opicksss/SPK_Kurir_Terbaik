@@ -7,7 +7,7 @@
 <head>
 
         <meta charset="utf-8" />
-        <title>Icon Sidebar | Tocly - Admin & Dashboard Template</title>
+        <title>Tocly | @yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -30,7 +30,7 @@
 
     </head>
 
-    <body data-keep-enlarged="true" class="vertical-collpsed">
+    <body data-sidebar="light">
 
         <!-- Begin page -->
         <div id="layout-wrapper">
@@ -61,7 +61,7 @@
         <!-- END layout-wrapper -->
 
         <!-- Right Sidebar -->
-        @include('layouts.navbar')
+        @include('layouts.setting')
         <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
