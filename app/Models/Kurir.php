@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Kurir extends Model
+{
+    protected $table = 'kurirs';
+
+    protected $fillable = ['kode', 'name'];
+
+    protected $guarded = ['id'];
+}

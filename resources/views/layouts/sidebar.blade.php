@@ -36,14 +36,50 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
-                <li class="mm-active">
+                <li>
                     <a href="/" class="waves-effect active">
                         <i class="uim uim-airplay"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-
                 <li>
+                    <a href="{{ route('kurir.index') }}" class="waves-effect active">
+                        <i class="uim uim-comment-message"></i>
+                        <span>Kurir</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                        <i class="uim uim-comment-message"></i>
+                        <span>Rekap</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                        <i class="uim uim-comment-message"></i>
+                        <span>Kriteria</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                        <i class="uim uim-comment-message"></i>
+                        <span>Perhitungan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                        <i class="uim uim-comment-message"></i>
+                        <span>Perankingan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                        <i class="uim uim-comment-message"></i>
+                        <span>Management Account</span>
+                    </a>
+                </li>
+
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uim uim-comment-message"></i>
                         <span>Management Account</span>
@@ -63,9 +99,7 @@
                         @endauth
 
                     </ul>
-                </li>
-
-
+                </li> --}}
             </ul>
 
         </div>
@@ -77,7 +111,7 @@
             aria-haspopup="true" aria-expanded="false">
             <span class="d-flex align-items-center">
                 <div class="flex-shrink-0">
-                    <img src="assets/images/users/avatar-2.jpg" class="img-fluid header-profile-user rounded-circle"
+                    <img src="img/profilDefault.jpg" class="img-fluid header-profile-user rounded-circle"
                         alt="">
                 </div>
 
@@ -100,12 +134,8 @@
                     class="mdi mdi-account-circle text-muted font-size-16 align-middle me-1"></i> <span
                     class="align-middle">Profile</span></a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><span class="badge bg-primary mt-1 float-end">New</span><i
-                    class="mdi mdi-cog-outline text-muted font-size-16 align-middle me-1"></i> <span
-                    class="align-middle">Settings</span></a>
-
             <a class="dropdown-item" href="{{ route('logout') }}"><i
-                    class="mdi mdi-logout text-muted font-size-16 align-middle me-1"></i> <span
+                    class="mdi mdi-logout text-danger font-size-16 align-middle me-1"></i> <span
                     class="align-middle">Logout</span></a>
         </div>
     </div>

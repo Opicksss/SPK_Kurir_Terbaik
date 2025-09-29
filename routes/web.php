@@ -3,8 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SuperadminController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\KurirController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -26,12 +25,11 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-});
-
-Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
     Route::resource('admin', AdminController::class);
-});
 
-Route::middleware(['auth', 'role:superadmin'])->group(function () {
-    Route::resource('superadmin', SuperadminController::class);
+    Route::get('kurir', [KurirController::class, 'index'])->name('kurir.index');
+    Route::post('kurir/store', [KurirController::class, 'store'])->name('kurir.store');
+    Route::get('kurir/{kurir}', [KurirController::class, 'show'])->name('kurir.show');
+    Route::put('kurir/{kurir}', [KurirController::class, 'update'])->name('kurir.update');
+    Route::delete('kurir/{kurir}', [KurirController::class, 'destroy'])->name('kurir.destroy');
 });

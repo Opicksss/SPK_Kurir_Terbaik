@@ -8,6 +8,8 @@
 
     <meta charset="utf-8" />
     <title>{{ config('app.name') }} | @yield('title')</title>
+    <link rel="stylesheet" type="text/css" href="assets/libs/toastr/build/toastr.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
@@ -119,6 +121,12 @@
 
     <!-- Datatable init js -->
     <script src="assets/js/pages/datatables.init.js"></script>
+
+    <!-- toastr plugin -->
+    <script src="assets/libs/toastr/build/toastr.min.js"></script>
+
+    <!-- toastr init -->
+    <script src="assets/js/pages/toastr.init.js"></script>
 
 
     <!-- App js -->

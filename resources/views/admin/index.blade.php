@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Admin Management')
+
 @section('content')
     <div class="page-content">
         <div class="container-fluid">

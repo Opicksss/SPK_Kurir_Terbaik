@@ -12,14 +12,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 20; $i++) {
-            \App\Models\User::create([
-                'name' => "Admin User $i",
-                'email' => "admin$i@gmail.com",
-                'password' => bcrypt('123123123'),
-                'role' => 'admin',
-            ]);
-        }
+        \App\Models\User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123123123'),
+            'role' => 'admin',
+        ]);
 
         \App\Models\User::create([
             'name' => 'Superadmin User',
