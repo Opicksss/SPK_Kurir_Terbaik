@@ -20,9 +20,9 @@ class UserSeeder extends Seeder
         ]);
 
         \App\Models\User::create([
-            'name' => 'Superadmin User',
-            'email' => 'superadmin@gmail.com',
-            'password' => bcrypt('123123123'),
+            'name' => 'dani',
+            'email' => 'romadani.student@unibamadura.ac.id',
+            'password' => bcrypt('12345678'),
             'role' => 'superadmin',
         ]);
     }

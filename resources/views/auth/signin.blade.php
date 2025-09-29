@@ -25,22 +25,27 @@
                             @csrf
 
                             <div class="mb-2">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     placeholder="Enter email" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="password-input">Password</label>
-                                <input type="password" class="form-control" id="password-input" name="password"
-                                    placeholder="Enter password" required>
+                                <label for="password-input">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password-input" name="password"
+                                        placeholder="Enter password" required>
+                                    <span class="input-group-text" id="toggle-password" style="cursor: pointer;">
+                                        <i class="fa fa-eye" id="toggle-password-icon"></i>
+                                    </span>
+                                </div>
                             </div>
 
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="auth-remember-check">
-                                <label class="form-check-label" for="auth-remember-check">
-                                    Remember me
-                                </label>
+
+
+
+                            <div class="d-flex justify-content-start mb-3">
+                                <a class="font-bold" href="{{ route('forgot') }}">Forgot password?</a>
                             </div>
 
                             <div class="mt-3">
@@ -61,3 +66,17 @@
         </div>
     </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('password-input');
+        const toggleBtn = document.getElementById('toggle-password');
+        const toggleIcon = document.getElementById('toggle-password-icon');
+        toggleBtn.addEventListener('click', function() {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
