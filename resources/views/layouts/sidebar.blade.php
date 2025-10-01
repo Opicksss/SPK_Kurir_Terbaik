@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                    <a href="{{ route('kriteria.index') }}" class="waves-effect active">
                         <i class="uim uim-comment-message"></i>
                         <span>Kriteria</span>
                     </a>

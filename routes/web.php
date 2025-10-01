@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\KurirController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('kurir/{kurir}', [KurirController::class, 'show'])->name('kurir.show');
     Route::put('kurir/{kurir}', [KurirController::class, 'update'])->name('kurir.update');
     Route::delete('kurir/{kurir}', [KurirController::class, 'destroy'])->name('kurir.destroy');
+
+    Route::resource('kriteria', KriteriaController::class);
 });
+    
