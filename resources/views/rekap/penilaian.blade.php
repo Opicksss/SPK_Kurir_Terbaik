@@ -33,7 +33,6 @@
 
                                 <tbody>
                                     @php
-                                        // Kelompokkan rekap berdasarkan tanggal
                                         $rekapByDate = $rekaps->groupBy('date');
                                     @endphp
                                     @foreach ($rekapByDate as $date => $rekapItems)
