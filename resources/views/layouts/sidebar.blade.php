@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                    <a href="{{ route('rekap.index') }}" class="waves-effect active">
                         <i class="uim uim-comment-message"></i>
                         <span>Rekap</span>
                     </a>
