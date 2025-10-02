@@ -46,6 +46,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('rekap', RekapController::class);
     // Route::get('rekap', [RekapController::class, 'index'])->name('rekap.index');
 
-    Route::get('rekap/{id}', [RekapController::class, 'detail'])->name('rekap.detail');
+    Route::get('rekap-{id}', [RekapController::class, 'detail'])->name('rekap.detail');
 
 });
