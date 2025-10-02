@@ -25,9 +25,6 @@
                                         <th>No</th>
                                         <th>Kode</th>
                                         <th>Nama</th>
-                                        <th>Nama</th>
-                                        <th>Nama</th>
-
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
