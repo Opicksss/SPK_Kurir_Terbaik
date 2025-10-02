@@ -52,7 +52,9 @@ class KriteriaController extends Controller
 
             return redirect()->back()->with('success', 'Kriteria berhasil diperbarui.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui Kriteria. Silakan coba lagi.' . $e->getMessage());
+            return redirect()
+                ->back()
+                ->with('error', 'Terjadi kesalahan saat memperbarui Kriteria. Silakan coba lagi.' . $e->getMessage());
         }
     }
 
@@ -63,6 +65,4 @@ class KriteriaController extends Controller
 
         return back()->with('success', 'data telah dihapus');
     }
-
-
 }

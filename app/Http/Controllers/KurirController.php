@@ -13,7 +13,7 @@ class KurirController extends Controller
     public function index()
     {
         $kurirs = Kurir::all();
-        return view('kurir', compact('kurirs'));
+        return view('kurir.kurir', compact('kurirs'));
     }
 
     /**
