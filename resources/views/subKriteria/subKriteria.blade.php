@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    kriteria
+    Sub kriteria
 @endsection
 
 @section('content')
@@ -23,23 +23,24 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode</th>
-                                        <th>Nama</th>
-                                        <th>Bobot</th>
-                                        <th>Sifat</th>
+                                        <th>nama</th>
+                                        <th>min</th>
+                                        <th>max</th>
+                                        <th>bobot</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($kriteria as $item)
+                                    @foreach ($SubKriteria as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->kode }}</td>
                                             <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->min }}</td>
+                                            <td>{{ $item->max }}</td>
                                             <td>{{ (float) $item->bobot * 1 == (int) $item->bobot ? (int) $item->bobot : rtrim(rtrim(number_format($item->bobot, 2, '.', ''), '0'), '.') }}%
                                             </td>
-                                            <td>{{ $item->sifat }}</td>
+
                                             <td>
 
                                                 <div class="d-flex gap-2">
@@ -49,8 +50,7 @@
                                                     <button type="button" class="btn btn-outline-danger btn-sm"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#delete{{ $item->id }}">Delete</button>
-                                                    <a href="{{ route('subKriteria.index', $item->id) }}"
-                                                        class="btn btn-outline-info btn-sm">Show</a>
+                                                    <a href=""></a>
                                                 </div>
 
                                             </td>
@@ -68,7 +68,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="custom-validation"
-                                                            action="{{ route('kriteria.update', $item->id) }}"
+                                                            action="{{ route('subKriteria.update', $item->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
@@ -77,6 +77,21 @@
                                                                 <input type="text" class="form-control" name="nama"
                                                                     required placeholder="Masukkan Nama"
                                                                     value="{{ $item->nama }}" />
+
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label>Min</label>
+                                                                <input type="text" class="form-control" name="min_value"
+                                                                    required placeholder="Masukkan Bobot"
+                                                                    value="{{ $item->min_value }}" />
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label>Min</label>
+                                                                <input type="text" class="form-control" name="min_value"
+                                                                    required placeholder="Masukkan Bobot"
+                                                                    value="{{ $item->max_value }}" />
                                                             </div>
 
                                                             <div class="mb-3">
@@ -84,18 +99,6 @@
                                                                 <input type="text" class="form-control" name="bobot"
                                                                     required placeholder="Masukkan Bobot"
                                                                     value="{{ $item->bobot }}" />
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label>Sifat</label>
-                                                                <select class="form-select" name="sifat" required>
-                                                                    <option value="cost"
-                                                                        {{ $item->sifat == 'cost' ? 'selected' : '' }}>
-                                                                        Cost</option>
-                                                                    <option value="benefit"
-                                                                        {{ $item->sifat == 'benefit' ? 'selected' : '' }}>
-                                                                        Benefit</option>
-                                                                </select>
                                                             </div>
 
 
@@ -117,7 +120,6 @@
                                             </div><!-- /.modal-dialog -->
                                         </div>
                                         <!-- /modal update -->
-
                                         <!-- modal delete -->
                                         <div id="delete{{ $item->id }}" class="modal fade" tabindex="-1"
                                             role="dialog" aria-labelledby="delete{{ $item->id }}Label"
@@ -134,7 +136,7 @@
                                                     <!-- Modal Body -->
                                                     <div class="modal-body text-center">
                                                         <p class="mb-4">
-                                                            Apakah Anda yakin ingin menghapus kriteria
+                                                            Apakah Anda yakin ingin menghapus Sub kriteria
                                                             <strong style="font-size: 1rem;">{{ ucwords($item->nama) }}
                                                                 ?</strong>
                                                             Tindakan ini tidak dapat dibatalkan.
@@ -150,7 +152,7 @@
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-bs-dismiss="modal">Close
                                                         </button>
-                                                        <form action="{{ route('kriteria.destroy', $item->id) }}"
+                                                        <form action="{{ route('subKriteria.destroy', $item->id) }}"
                                                             method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('DELETE')
@@ -176,7 +178,9 @@
 
 
     <!-- sample modal content -->
-    <div id="create" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
+
+    <div id="create" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -184,7 +188,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="custom-validation" action="{{ route('kriteria.store') }}" method="POST">
+                    <form class="custom-validation" action="{{ route('subKriteria.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label>Name</label>
@@ -193,20 +197,25 @@
                         </div>
 
                         <div class="mb-3">
+                            <label>Min Value</label>
+                            <input type="text" class="form-control" name="min_value" required
+                                placeholder="Masukkan Min Value" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>max Value</label>
+                            <input type="text" class="form-control" name="max_value" required
+                                placeholder="Masukkan Max " />
+                        </div>
+
+                        <div class="mb-3">
                             <label>Bobot</label>
                             <input type="text" class="form-control" name="bobot" required
                                 placeholder="Masukkan Bobot" />
                         </div>
 
-                        <div class="mb-3">
-                            <label>Sifat</label>
-                            <select class="form-select" name="sifat" required>
-                                <option value="cost">
-                                    Cost</option>
-                                <option value="benefit">
-                                    Benefit</option>
-                            </select>
-                        </div>
+                        <input type="text" class="form-control" name="kriteria_id" required
+                            value="{{ $kriteria->id }}" hidden />
 
                         <div class="mb-0">
                             <div class="d-flex justify-content-end">

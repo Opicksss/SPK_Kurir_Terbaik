@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\KurirController;
+use App\Http\Controllers\SubKriteriaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -35,5 +36,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('kurir/{kurir}', [KurirController::class, 'destroy'])->name('kurir.destroy');
 
     Route::resource('kriteria', KriteriaController::class);
+
+    Route::get('/{id}', [SubKriteriaController::class, 'index'])->name('subKriteria.index');
+    Route::post('/', [SubKriteriaController::class, 'store'])->name('subKriteria.store');
+    Route::put('/{id}', [SubKriteriaController::class, 'update'])->name('subKriteria.update');
+    Route::delete('/{id}', [SubKriteriaController::class, 'destroy'])->name('subKriteria.destroy');
 });
-    
