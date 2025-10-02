@@ -50,7 +50,7 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#delete{{ $item->id }}">Delete</button>
                                                     <a href="{{ route('subKriteria.index', $item->id) }}"
-                                                        class="btn btn-outline-info btn-sm">Show</a>
+                                                        class="btn btn-outline-info btn-sm">Sub Kriteria</a>
                                                 </div>
 
                                             </td>

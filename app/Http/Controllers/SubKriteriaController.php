@@ -43,7 +43,7 @@ class SubKriteriaController extends Controller
 
             // Validasi dasar
             $validated = $request->validate([
-                'kriteria_id' => 'required|exists:kriterias,id',
+                // 'kriteria_id' => 'required|exists:kriterias,id',
                 'nama' => 'required|string|max:255',
                 'min_value' => 'nullable|integer',
                 'max_value' => 'nullable|integer',

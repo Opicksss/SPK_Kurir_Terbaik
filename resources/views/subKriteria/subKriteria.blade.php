@@ -32,12 +32,12 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($SubKriteria as $item)
+                                    @foreach ($subKriteria as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->min }}</td>
-                                            <td>{{ $item->max }}</td>
+                                            <td>{{ $item->min_value }}</td>
+                                            <td>{{ $item->max_value }}</td>
                                             <td>{{ (float) $item->bobot * 1 == (int) $item->bobot ? (int) $item->bobot : rtrim(rtrim(number_format($item->bobot, 2, '.', ''), '0'), '.') }}%
                                             </td>
 
