@@ -39,13 +39,16 @@
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->name }}</td>
 
+                                            @foreach ($kriterias as $kriteria)
+                                                @php
+                                                    $rekap = $rekaps->where('kurir_id', $item->id)->where('kriteria_id', $kriteria->id)->first();
+                                                @endphp
+                                                <td>
+                                                    {{ $rekap ? $rekap->nilai : '-' }}
+                                                </td>
+                                            @endforeach
                                             <td>
-                                                @foreach ($rekaps->where('kurir_id', $item->id) as $rekap)
-                                                    {{ $rekap->nilai }} <br>
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('rekap.detail', $item->id) }}" class="btn btn-outline-primary btn-sm">Detail</a>
+                                                <a href="{{ route('rekap.detail', $item->id) }}" class="btn btn-outline-info btn-sm">Detail</a>
                                         </tr>
                                     @endforeach
                                 </tbody>
