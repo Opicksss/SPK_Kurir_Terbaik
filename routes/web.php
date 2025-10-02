@@ -42,8 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/', [SubKriteriaController::class, 'store'])->name('subKriteria.store');
     Route::put('/{id}', [SubKriteriaController::class, 'update'])->name('subKriteria.update');
     Route::delete('/{id}', [SubKriteriaController::class, 'destroy'])->name('subKriteria.destroy');
+
     Route::resource('rekap', RekapController::class);
-  
     Route::get('rekap{id}', [RekapController::class, 'detail'])->name('rekap.detail');
 
 });
