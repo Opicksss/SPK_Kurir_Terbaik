@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\KurirController;
+use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -35,5 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('kurir/{kurir}', [KurirController::class, 'destroy'])->name('kurir.destroy');
 
     Route::resource('kriteria', KriteriaController::class);
+    Route::resource('rekap', RekapController::class);
+    Route::get('rekap{id}', [RekapController::class, 'detail'])->name('rekap.detail');
+
 });
-    

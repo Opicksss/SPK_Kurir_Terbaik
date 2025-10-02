@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 
 class KriteriaController extends Controller
 {

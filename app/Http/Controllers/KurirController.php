@@ -30,14 +30,14 @@ class KurirController extends Controller
     public function store(Request $request)
     {
         try {
-            $validatedData = $request->validate([
+            $validated = $request->validate([
                 'name' => 'required|string|max:255',
             ]);
 
             $lastNumber = Kurir::count() + 1;
-            $validatedData['kode'] = 'KR' . $lastNumber;
+            $validated['kode'] = 'KR' . $lastNumber;
 
-            Kurir::create($validatedData);
+            Kurir::create($validated);
             return redirect()->back()->with('success', 'Kurir berhasil di tambahkan');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menambahkan Kurir. Silakan coba lagi.');
@@ -66,11 +66,11 @@ class KurirController extends Controller
     public function update(Request $request, Kurir $kurir)
     {
         try {
-            $validatedData = $request->validate([
+            $validated = $request->validate([
                 'name' => 'required|string|max:255',
             ]);
 
-            $kurir->update($validatedData);
+            $kurir->update($validated);
             return redirect()->back()->with('success', 'Kurir berhasil di update');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupdate Kurir. Silakan coba lagi.');
