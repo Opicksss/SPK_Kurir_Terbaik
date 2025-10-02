@@ -8,7 +8,7 @@ class Kurir extends Model
 {
     protected $table = 'kurirs';
 
-    protected $fillable = ['kode', 'name'];
+    protected $fillable = ['kode', 'name', 'alamat', 'nomor', 'tanggal_masuk'];
 
     protected $guarded = ['id'];
 }

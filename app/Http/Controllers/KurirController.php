@@ -32,6 +32,9 @@ class KurirController extends Controller
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
+                'alamat' => 'nullable|string|max:255',
+                'nomor' => 'nullable|string|max:20',
+                'tanggal_masuk' => 'required|date',
             ]);
 
             $lastNumber = Kurir::count() + 1;
@@ -68,6 +71,9 @@ class KurirController extends Controller
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
+                'alamat' => 'nullable|string|max:255',
+                'nomor' => 'nullable|string|max:20',
+                'tanggal_masuk' => 'required|date',
             ]);
 
             $kurir->update($validated);

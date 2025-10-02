@@ -15,21 +15,21 @@ class KurirSeeder extends Seeder
     {
         DB::table('kurirs')->insert([
             [
-                'kode' => 'KUR001',
+                'kode' => 'KR1',
                 'name' => 'John Doe',
                 'alamat' => '123 Main St, Cityville',
                 'nomor' => '081234567890',
                 'tanggal_masuk' => '2020-01-15',
             ],
             [
-                'kode' => 'KUR002',
+                'kode' => 'KR2',
                 'name' => 'Jane Smith',
                 'alamat' => '456 Oak St, Townsville',
                 'nomor' => '082345678901',
                 'tanggal_masuk' => '2019-03-22',
             ],
             [
-                'kode' => 'KUR003',
+                'kode' => 'KR3',
                 'name' => 'Mike Johnson',
                 'alamat' => '789 Pine St, Villageville',
                 'nomor' => '083456789012',

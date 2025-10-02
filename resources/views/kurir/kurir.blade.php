@@ -25,6 +25,9 @@
                                         <th>No</th>
                                         <th>Kode</th>
                                         <th>Nama</th>
+                                        <th>Alamat</th>
+                                        <th>Nomor Hp</th>
+                                        <th>Tanggal Masuk</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
@@ -35,6 +38,9 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ $item->nomor }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->tanggal_masuk)->format('d F Y') }}</td>
                                             <td>
 
                                                 <div class="d-flex gap-2">
@@ -70,6 +76,29 @@
                                                                     required placeholder="Masukkan Nama"
                                                                     value="{{ $item->name }}" />
                                                             </div>
+
+                                                            <div class="mb-3">
+                                                                <label>Alamat</label>
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    required placeholder="Masukkan alamat"
+                                                                    value="{{ $item->alamat }}" />
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label>Nomor Hp</label>
+                                                                <input type="text" class="form-control" name="nomor"
+                                                                    required placeholder="Masukkan Nomor Hp"
+                                                                    value="{{ $item->nomor }}" />
+                                                            </div>
+
+
+                                                            <div class="mb-3">
+                                                                <label>Tanggal Masuk</label>
+                                                                <input type="date" class="form-control"
+                                                                    name="tanggal_masuk" required
+                                                                    placeholder="Masukkan tanggal"
+                                                                    value="{{ $item->tanggal_masuk }}" />
+                                                            </div>
+
                                                             <div class="mb-0">
                                                                 <div class="d-flex justify-content-end">
                                                                     <button type="submit"
@@ -89,45 +118,46 @@
                                         </div>
                                         <!-- /modal update -->
                                         <!-- modal delete -->
-                                        <div id="delete{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
-                                            aria-labelledby="delete{{ $item->id }}Label" aria-hidden="true">
+                                        <div id="delete{{ $item->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete{{ $item->id }}Label"
+                                            aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
-                                            <!-- Modal Header -->
-                                            <div class="modal-header justify-content-center">
-                                                <h5 class="modal-title text-danger">
-                                                    Konfirmasi Penghapusan
-                                                </h5>
-                                            </div>
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header justify-content-center">
+                                                        <h5 class="modal-title text-danger">
+                                                            Konfirmasi Penghapusan
+                                                        </h5>
+                                                    </div>
 
-                                            <!-- Modal Body -->
-                                            <div class="modal-body text-center">
-                                                <p class="mb-4">
-                                                    Apakah Anda yakin ingin menghapus Kurir
-                                                    <strong style="font-size: 1rem;">{{ ucwords($item->name) }}
-                                                        ?</strong>
-                                                    Tindakan ini tidak dapat dibatalkan.
-                                                </p>
-                                                <div class="d-flex justify-content-center">
-                                                    <i class="bi bi-exclamation-circle-fill text-warning"
-                                                        style="font-size: 3rem;"></i>
+                                                    <!-- Modal Body -->
+                                                    <div class="modal-body text-center">
+                                                        <p class="mb-4">
+                                                            Apakah Anda yakin ingin menghapus Kurir
+                                                            <strong style="font-size: 1rem;">{{ ucwords($item->name) }}
+                                                                ?</strong>
+                                                            Tindakan ini tidak dapat dibatalkan.
+                                                        </p>
+                                                        <div class="d-flex justify-content-center">
+                                                            <i class="bi bi-exclamation-circle-fill text-warning"
+                                                                style="font-size: 3rem;"></i>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal Footer -->
+                                                    <div class="modal-footer justify-content-center gap-3">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                        </button>
+                                                        <form action="{{ route('kurir.destroy', $item->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-outline-danger">Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <!-- Modal Footer -->
-                                            <div class="modal-footer justify-content-center gap-3">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    data-bs-dismiss="modal">Close
-                                                </button>
-                                                <form action="{{ route('kurir.destroy', $item->id) }}"
-                                                    method="POST" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger">Delete
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
                                             </div><!-- /.modal-dialog -->
                                         </div>
                                         <!-- /modal delete -->
@@ -146,7 +176,8 @@
 
     <!-- sample modal content -->
 
-    <div id="create" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
+    <div id="create" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -161,6 +192,26 @@
                             <input type="text" class="form-control" name="name" required
                                 placeholder="Masukkan Nama" />
                         </div>
+
+                        <div class="mb-3">
+                            <label>Alamat</label>
+                            <input type="text" class="form-control" name="alamat" required
+                                placeholder="Masukkan alamat" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Nomor Hp</label>
+                            <input type="text" class="form-control" name="nomor" required
+                                placeholder="Masukkan Nomor Hp" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Tanggal Masuk</label>
+                            <input type="date" class="form-control" name="tanggal_masuk" required
+                                placeholder="Masukkan tanggal" />
+                        </div>
+
+
                         <div class="mb-0">
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
