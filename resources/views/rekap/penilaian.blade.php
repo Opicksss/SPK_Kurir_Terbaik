@@ -12,7 +12,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="m-0">Penilaian Kurir {{ $kurirs->name }}</h5>
+                                <h5 class="m-0">
+                                    <a href="{{ route('rekap.index') }}" class="text-decoration-none">
+                                        Rekap Nilai
+                                    </a>
+                                    > Penilaian Kurir {{ $kurirs->name }}
+                                </h5>
 
                                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                     data-bs-target="#create">Create</button>
@@ -48,10 +53,116 @@
                                                 </td>
                                             @endforeach
                                             <td>
-                                                <a href="{{ route('rekap.detail', $kurirs->id) }}"
-                                                    class="btn btn-outline-info btn-sm">Detail</a>
+                                                <div class="d-flex gap-2">
+                                                    <button type="button" class="btn btn-outline-warning btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#update{{ $loop->iteration }}">
+                                                        Update
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#delete{{ $loop->iteration }}">
+                                                        Delete
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
+                                        <!-- Modal Update -->
+                                        <div id="update{{ $loop->iteration }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="update{{ $loop->iteration }}Label"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="update{{ $loop->iteration }}Label">
+                                                            Update Rekap
+                                                            ({{ \Carbon\Carbon::parse($date)->format('d-m-Y') }})
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('rekap.update', $date) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            @foreach ($kriterias as $kriteria)
+                                                                @php
+                                                                    $nilai = $rekapItems
+                                                                        ->where('kriteria_id', $kriteria->id)
+                                                                        ->first();
+                                                                @endphp
+                                                                <div class="mb-3">
+                                                                    <label>{{ $kriteria->nama }}</label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="nilai[{{ $kriteria->id }}]"
+                                                                        value="{{ $nilai ? $nilai->nilai : '' }}"
+                                                                        placeholder="Masukkan Nilai" />
+                                                                </div>
+                                                            @endforeach
+                                                            <div class="mb-0">
+                                                                <div class="d-flex justify-content-end">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary waves-effect waves-light me-1">
+                                                                        Submit
+                                                                    </button>
+                                                                    <button type="reset"
+                                                                        class="btn btn-secondary waves-effect">
+                                                                        Reset
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /modal update -->
+
+                                        <!-- Modal Delete -->
+                                        <div id="delete{{ $loop->iteration }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete{{ $loop->iteration }}Label"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header justify-content-center">
+                                                        <h5 class="modal-title text-danger">
+                                                            Konfirmasi Penghapusan
+                                                        </h5>
+                                                    </div>
+
+                                                    <!-- Modal Body -->
+                                                    <div class="modal-body text-center">
+                                                        <p class="mb-4">
+                                                            Apakah Anda yakin ingin menghapus semua rekap pada tanggal
+                                                            <strong style="font-size: 1rem;">
+                                                                {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}
+                                                            </strong>?
+                                                            Tindakan ini tidak dapat dibatalkan.
+                                                        </p>
+                                                        <div class="d-flex justify-content-center">
+                                                            <i class="bi bi-exclamation-circle-fill text-warning"
+                                                                style="font-size: 3rem;"></i>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal Footer -->
+                                                    <div class="modal-footer justify-content-center gap-3">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                        </button>
+                                                        <form action="{{ route('rekap.destroy', $date) }}" method="POST"
+                                                            style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /modal delete -->
                                     @endforeach
                                 </tbody>
                             </table>
@@ -75,13 +186,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="custom-validation" action="{{ route('kurir.store') }}" method="POST">
+                    <form class="custom-validation" action="{{ route('rekap.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" name="name" required
-                                placeholder="Masukkan Nama" />
+                            <label>Tanggal</label>
+                            <input type="date" class="form-control" name="date" required
+                                placeholder="Masukkan Tanggal" />
                         </div>
+                        @foreach ($kriterias as $kriteria)
+                            @if (strtolower($kriteria->nama) !== 'masa kerja')
+                                <div class="mb-3">
+                                    <label>{{ $kriteria->nama }}</label>
+                                    <input type="number" class="form-control" name="nilai[{{ $kriteria->id }}]"
+                                        required placeholder="Masukkan nilai {{ $kriteria->nama }}" min="0" />
+                                </div>
+                            @endif
+                        @endforeach
+                        <input type="hidden"
+                            name="nilai[{{ $kriterias->where('nama', 'Masa Kerja')->first()->id ?? '' }}]"
+                            value="{{ \Carbon\Carbon::parse($kurirs->tanggal_masuk)->diffInYears(now()) }}" />
+                        <input type="hidden" name="kurir_id" value="{{ $kurirs->id }}">
                         <div class="mb-0">
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

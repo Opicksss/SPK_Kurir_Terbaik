@@ -41,14 +41,26 @@
 
                                             @foreach ($kriterias as $kriteria)
                                                 @php
-                                                    $rekap = $rekaps->where('kurir_id', $item->id)->where('kriteria_id', $kriteria->id)->first();
+                                                    if (strtolower($kriteria->nama) !== 'masa kerja') {
+                                                        $totalNilai = $rekaps
+                                                            ->where('kurir_id', $item->id)
+                                                            ->where('kriteria_id', $kriteria->id)
+                                                            ->sum('nilai');
+                                                    } else {
+                                                        $totalNilai =
+                                                            $rekaps
+                                                                ->where('kurir_id', $item->id)
+                                                                ->where('kriteria_id', $kriteria->id)
+                                                                ->first()->nilai ?? '-';
+                                                    }
                                                 @endphp
                                                 <td>
-                                                    {{ $rekap ? $rekap->nilai : '-' }}
+                                                    {{ $totalNilai > 0 ? $totalNilai : '-' }}
                                                 </td>
                                             @endforeach
                                             <td>
-                                                <a href="{{ route('rekap.detail', $item->id) }}" class="btn btn-outline-info btn-sm">Detail</a>
+                                                <a href="{{ route('rekap.detail', $item->id) }}"
+                                                    class="btn btn-outline-info btn-sm">Detail</a>
                                         </tr>
                                     @endforeach
                                 </tbody>

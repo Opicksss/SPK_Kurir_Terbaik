@@ -44,8 +44,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('SubKriteria-{id}', [SubKriteriaController::class, 'destroy'])->name('subKriteria.destroy');
 
     Route::resource('rekap', RekapController::class);
-    // Route::get('rekap', [RekapController::class, 'index'])->name('rekap.index');
-
     Route::get('rekap-{id}', [RekapController::class, 'detail'])->name('rekap.detail');
 
 });
