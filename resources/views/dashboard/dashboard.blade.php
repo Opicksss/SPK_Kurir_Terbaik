@@ -18,12 +18,12 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
-                                    <p class="text-muted text-truncate font-size-15 mb-2"> Total Earnings</p>
-                                    <h3 class="fs-4 flex-grow-1 mb-3">34,123.20 <span
-                                            class="text-muted font-size-16">USD</span></h3>
+                                    <p class="text-muted text-truncate font-size-15 mb-2">Total Kriteria</p>
+                                    <h3 class="fs-4 flex-grow-1 mb-3">{{ $totalKriteria }} <span
+                                            class="text-muted font-size-16">Kriteria</span></h3>
                                     <p class="text-muted mb-0 text-truncate"><span
                                             class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-top-right"></i> 2.8% Increase</span> vs last month</p>
+                                                class="mdi mdi-arrow-top-right"></i> Active</span> Kriteria Evaluasi</p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -32,10 +32,7 @@
                                             <i class="ri-more-2-fill text-muted font-size-16"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="#">Yearly</a>
-                                            <a class="dropdown-item" href="#">Monthly</a>
-                                            <a class="dropdown-item" href="#">Weekly</a>
-                                            <a class="dropdown-item" href="#">Today</a>
+                                            <a class="dropdown-item" href="{{ route('kriteria.index') }}">Lihat Detail</a>
                                         </div>
                                     </div>
                                 </div>
@@ -54,12 +51,12 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
-                                    <p class="text-muted text-truncate font-size-15 mb-2"> Total Orders</p>
-                                    <h3 class="fs-4 flex-grow-1 mb-3">63,234 <span
-                                            class="text-muted font-size-16">NOU</span></h3>
+                                    <p class="text-muted text-truncate font-size-15 mb-2">Total Kurir</p>
+                                    <h3 class="fs-4 flex-grow-1 mb-3">{{ $totalKurir }} <span
+                                            class="text-muted font-size-16">Kurir</span></h3>
                                     <p class="text-muted mb-0 text-truncate"><span
-                                            class="badge bg-subtle-danger text-danger font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-bottom-left"></i> 7.8% Loss</span> vs last month</p>
+                                            class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
+                                                class="mdi mdi-arrow-top-right"></i> Active</span> Kurir Terdaftar</p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -68,10 +65,7 @@
                                             <i class="ri-more-2-fill text-muted font-size-16"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="#">Yearly</a>
-                                            <a class="dropdown-item" href="#">Monthly</a>
-                                            <a class="dropdown-item" href="#">Weekly</a>
-                                            <a class="dropdown-item" href="#">Today</a>
+                                            <a class="dropdown-item" href="{{ route('kurir.index') }}">Lihat Detail</a>
                                         </div>
                                     </div>
                                 </div>
@@ -90,12 +84,12 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
-                                    <p class="text-muted text-truncate font-size-15 mb-2"> Today Visitor</p>
-                                    <h3 class="fs-4 flex-grow-1 mb-3">425,34 <span
-                                            class="text-muted font-size-16">NOU</span></h3>
+                                    <p class="text-muted text-truncate font-size-15 mb-2">Total Rekap</p>
+                                    <h3 class="fs-4 flex-grow-1 mb-3">{{ $totalRekap }} <span
+                                            class="text-muted font-size-16">Data</span></h3>
                                     <p class="text-muted mb-0 text-truncate"><span
                                             class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-top-right"></i> 4.6% Growth</span> vs last month</p>
+                                                class="mdi mdi-arrow-top-right"></i> Evaluasi</span> Data Penilaian</p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -104,10 +98,7 @@
                                             <i class="ri-more-2-fill text-muted font-size-16"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="#">Yearly</a>
-                                            <a class="dropdown-item" href="#">Monthly</a>
-                                            <a class="dropdown-item" href="#">Weekly</a>
-                                            <a class="dropdown-item" href="#">Today</a>
+                                            <a class="dropdown-item" href="{{ route('rekap.index') }}">Lihat Detail</a>
                                         </div>
                                     </div>
                                 </div>
@@ -126,12 +117,12 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
-                                    <p class="text-muted text-truncate font-size-15 mb-2"> Total Expense</p>
-                                    <h3 class="fs-4 flex-grow-1 mb-3">26,482.46 <span
-                                            class="text-muted font-size-16">USD</span></h3>
+                                    <p class="text-muted text-truncate font-size-15 mb-2">Rata-rata Nilai</p>
+                                    <h3 class="fs-4 flex-grow-1 mb-3"> 0 <span
+                                            class="text-muted font-size-16">Skor</span></h3>
                                     <p class="text-muted mb-0 text-truncate"><span
                                             class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-top-right"></i> 23% Increase</span> vs last month</p>
+                                                class="mdi mdi-arrow-top-right"></i> Rata-rata</span> Nilai Evaluasi</p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -140,10 +131,7 @@
                                             <i class="ri-more-2-fill text-muted font-size-16"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="#">Yearly</a>
-                                            <a class="dropdown-item" href="#">Monthly</a>
-                                            <a class="dropdown-item" href="#">Weekly</a>
-                                            <a class="dropdown-item" href="#">Today</a>
+                                            <a class="dropdown-item" href="{{ route('rekap.index') }}">Lihat Detail</a>
                                         </div>
                                     </div>
                                 </div>
@@ -158,30 +146,34 @@
                 <div class="col-xl-8">
                     <div class="card">
                         <div class="card-header border-0 align-items-center d-flex pb-0">
-                            <h4 class="card-title mb-0 flex-grow-1">Audiences Metrics</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">Statistik Evaluasi Kurir</h4>
                             <div>
-                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                    ALL
-                                </button>
-                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                    1M
-                                </button>
-                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                    6M
-                                </button>
-                                <button type="button" class="btn btn-soft-primary btn-sm">
-                                    1Y
-                                </button>
+                                <a href="{{ route('rekap.index') }}" class="btn btn-soft-primary btn-sm">
+                                    Lihat Detail
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-xl-8 audiences-border">
-                                    <div id="column-chart" class="apex-charts"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Kurir Terbaik Januari - Mei 2025</h5>
+
+
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="avatar-sm flex-shrink-0">
+                                            <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
+                                                <i class="uim uim-briefcase"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-1">Dani</h6>
+                                            <p class="text-muted mb-0">Kode: KY04</p>
+                                            <p class="text-success mb-0">Rata-rata: 89,223</p>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="col-xl-4">
-                                    <div id="donut-chart" class="apex-charts"></div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -190,15 +182,25 @@
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-header border-0 align-items-center d-flex pb-1">
-                            <h4 class="card-title mb-0 flex-grow-1">Live Users By Country</h4>
-                            <div>
-                                <button type="button" class="btn btn-soft-primary btn-sm">
-                                    Export Report
-                                </button>
-                            </div>
+                            <h4 class="card-title mb-0 flex-grow-1">Ringkasan Data</h4>
                         </div>
                         <div class="card-body">
-                            <div id="world-map-markers" style="height: 346px;"></div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Total Sub Kriteria</span>
+                                <span class="fw-bold">{{ $totalSubKriteria }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Rata-rata Nilai</span>
+                                <span class="fw-bold text-success">0</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Total Evaluasi</span>
+                                <span class="fw-bold">{{ $totalRekap }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted">Kurir Terdaftar</span>
+                                <span class="fw-bold">{{ $totalKurir }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
