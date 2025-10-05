@@ -130,7 +130,7 @@
         </button>
         <div class="dropdown-menu dropdown-menu-end">
             <!-- item-->
-            <a class="dropdown-item" href="pages-profile.html"><i
+            <a class="dropdown-item" href="{{ route('profile', ['id' => auth()->id()]) }}"><i
                     class="mdi mdi-account-circle text-muted font-size-16 align-middle me-1"></i> <span
                     class="align-middle">Profile</span></a>
             <div class="dropdown-divider"></div>

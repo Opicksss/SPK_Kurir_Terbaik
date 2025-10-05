@@ -5,9 +5,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\KurirController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubKriteriaController;
 use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/dashboard', function () {
     return view('welcome');
@@ -45,5 +47,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('rekap', RekapController::class);
     Route::get('rekap-{id}', [RekapController::class, 'detail'])->name('rekap.detail');
+
+    Route::get('profile-{id}', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::post('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
 
 });
