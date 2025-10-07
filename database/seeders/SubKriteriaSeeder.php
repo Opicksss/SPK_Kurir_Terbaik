@@ -29,26 +29,26 @@ class SubKriteriaSeeder extends Seeder
             ['kriteria_id' => 2, 'nama' => '< 1 Tahun',     'bobot' => 1, 'min_value' => 1, 'max_value' => 1],
 
             // Trip Objek (kriteria_id = 3)
-            ['kriteria_id' => 2, 'nama' => '>=300 Trip', 'bobot' => 5, 'min_value' => 300, 'max_value' => 5000],
-            ['kriteria_id' => 2, 'nama' => '200 - 299 Trip', 'bobot' => 4, 'min_value' => 200, 'max_value' => 299],
-            ['kriteria_id' => 2, 'nama' => '100 - 199 Trip', 'bobot' => 3, 'min_value' => 100, 'max_value' => 199],
-            ['kriteria_id' => 2, 'nama' => '50 - 99 Trip', 'bobot' => 2, 'min_value' => 50, 'max_value' => 99],
-            ['kriteria_id' => 2, 'nama' => '< 50 Trip', 'bobot' => 1, 'min_value' => 1, 'max_value' => 49],
+            ['kriteria_id' => 3, 'nama' => '>=300 Trip', 'bobot' => 5, 'min_value' => 300, 'max_value' => 5000],
+            ['kriteria_id' => 3, 'nama' => '200 - 299 Trip', 'bobot' => 4, 'min_value' => 200, 'max_value' => 299],
+            ['kriteria_id' => 3, 'nama' => '100 - 199 Trip', 'bobot' => 3, 'min_value' => 100, 'max_value' => 199],
+            ['kriteria_id' => 3, 'nama' => '50 - 99 Trip', 'bobot' => 2, 'min_value' => 50, 'max_value' => 99],
+            ['kriteria_id' => 3, 'nama' => '< 50 Trip', 'bobot' => 1, 'min_value' => 1, 'max_value' => 49],
 
 
             // Total Trip Barang (kriteria_id = 4)
-            ['kriteria_id' => 3, 'nama' => '>= 200 Trip ', 'bobot' => 5, 'min_value' => 200, 'max_value' => 1000],
-            ['kriteria_id' => 3, 'nama' => '150-199 Trip', 'bobot' => 4, 'min_value' => 150, 'max_value' => 199],
-            ['kriteria_id' => 3, 'nama' => '100-149 Trip', 'bobot' => 3, 'min_value' => 100, 'max_value' => 149],
-            ['kriteria_id' => 3, 'nama' => '>50 - 99 Trip', 'bobot' => 2, 'min_value' => 50, 'max_value' => 99],
-             ['kriteria_id' => 3, 'nama' => '>50 - 99 Trip', 'bobot' => 1, 'min_value' => 1, 'max_value' => 49],
+            ['kriteria_id' => 4, 'nama' => '>= 200 Trip ', 'bobot' => 5, 'min_value' => 200, 'max_value' => 1000],
+            ['kriteria_id' => 4, 'nama' => '150-199 Trip', 'bobot' => 4, 'min_value' => 150, 'max_value' => 199],
+            ['kriteria_id' => 4, 'nama' => '100-149 Trip', 'bobot' => 3, 'min_value' => 100, 'max_value' => 149],
+            ['kriteria_id' => 4, 'nama' => '>50 - 99 Trip', 'bobot' => 2, 'min_value' => 50, 'max_value' => 99],
+             ['kriteria_id' => 4, 'nama' => '>50 - 99 Trip', 'bobot' => 1, 'min_value' => 1, 'max_value' => 49],
 
             // PELANGGARAN (kriteria_id = 4)
-            ['kriteria_id' => 4, 'nama' => '> 13 Kali', 'bobot' => 1, 'min_value' => 13, 'max_value' => 1000],
-            ['kriteria_id' => 4, 'nama' => '10 - 12 kali ', 'bobot' => 2, 'min_value' => 10, 'max_value' => 12],
-            ['kriteria_id' => 4, 'nama' => '7 - 9 kali ', 'bobot' => 3, 'min_value' => 7, 'max_value' => 9],
-            ['kriteria_id' => 4, 'nama' => '4 - 6 kali ', 'bobot' => 4, 'min_value' => 4, 'max_value' => 6],
-              ['kriteria_id' => 4, 'nama' => '0 - 3 kali ', 'bobot' => 5, 'min_value' => 0, 'max_value' => 3],
+            ['kriteria_id' => 5, 'nama' => '> 13 Kali', 'bobot' => 1, 'min_value' => 13, 'max_value' => 1000],
+            ['kriteria_id' => 5, 'nama' => '10 - 12 kali ', 'bobot' => 2, 'min_value' => 10, 'max_value' => 12],
+            ['kriteria_id' => 5, 'nama' => '7 - 9 kali ', 'bobot' => 3, 'min_value' => 7, 'max_value' => 9],
+            ['kriteria_id' => 5, 'nama' => '4 - 6 kali ', 'bobot' => 4, 'min_value' => 4, 'max_value' => 6],
+             ['kriteria_id' => 5, 'nama' => '0 - 3 kali ', 'bobot' => 5, 'min_value' => 0, 'max_value' => 3],
         ]);
     }
 }
