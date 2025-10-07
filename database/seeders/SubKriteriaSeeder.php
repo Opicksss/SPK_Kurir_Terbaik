@@ -19,7 +19,7 @@ class SubKriteriaSeeder extends Seeder
             ['kriteria_id' => 1, 'nama' => '6 - 10 Kali', 'bobot' => 4, 'min_value' => 6, 'max_value' => 10],
             ['kriteria_id' => 1, 'nama' => '11 - 15 Kali', 'bobot' => 3, 'min_value' => 11, 'max_value' => 15],
             ['kriteria_id' => 1, 'nama' => '16 - 20 kali', 'bobot' => 2, 'min_value' => 16, 'max_value' => 20],
-            ['kriteria_id' => 1, 'nama' => '> 20 kali', 'bobot' => 1, 'min_value' => 20, 'max_value' => 100],
+            ['kriteria_id' => 1, 'nama' => '> 20 kali', 'bobot' => 1, 'min_value' => 21, 'max_value' => 100],
 
             // MASA KERJA (kriteria_id = 2)
             ['kriteria_id' => 2, 'nama' => '>=10 Tahun ', 'bobot' => 5, 'min_value' => 10, 'max_value' => 100],
