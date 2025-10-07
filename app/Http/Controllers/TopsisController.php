@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rekap;
-use App\Models\Kurir;
 use App\Models\Kriteria;
+use App\Models\SubKriteria;
+use App\Models\Kurir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,103 +13,109 @@ class TopsisController extends Controller
 {
     public function index(Request $request)
     {
-        // 🗓️ Ambil rentang tanggal 5 bulan terakhir
-        $endDate = $request->input('end_date', now());
-        $startDate = \Carbon\Carbon::parse($endDate)->subMonths(5);
+        // Ambil tahun & periode dari user (default tahun sekarang)
+        $tahun = $request->input('tahun', date('Y'));
+        $periode = $request->input('periode', 1); // 1 = Jan–Jun, 2 = Jul–Des
 
-        // 1️⃣ Ambil data rekap selama 5 bulan
-        $data = Rekap::whereBetween('date', [$startDate, $endDate])
-            ->select('kurir_id', 'kriteria_id', DB::raw('AVG(nilai) as rata_nilai'))
-            ->groupBy('kurir_id', 'kriteria_id')
-            ->get();
+        $bulanPeriode = $periode == 1
+            ? [1, 2, 3, 4, 5, 6]
+            : [7, 8, 9, 10, 11, 12];
 
-        $kurirs = Kurir::all();
+        // Ambil semua kriteria dan bobotnya
         $kriterias = Kriteria::all();
 
-        // Bentuk matriks keputusan
-        $matriks = [];
-        foreach ($data as $d) {
-            $matriks[$d->kurir_id][$d->kriteria_id] = $d->rata_nilai;
+        // Ambil data rekap berdasarkan periode dan tahun
+        $rekaps = Rekap::whereYear('date', $tahun)
+            ->whereIn(DB::raw('MONTH(date)'), $bulanPeriode)
+            ->get();
+
+        // Ambil semua kurir
+        $kurirs = Kurir::all();
+
+        // ===== STEP 1: KONVERSI NILAI KE SUBKRITERIA =====
+        $nilaiMatrix = [];
+        foreach ($kurirs as $kurir) {
+            foreach ($kriterias as $kriteria) {
+                $nilai = $rekaps
+                    ->where('kurir_id', $kurir->id)
+                    ->where('kriteria_id', $kriteria->id)
+                    ->avg('nilai'); // rata-rata jika lebih dari satu data
+
+                if ($nilai !== null) {
+                    $sub = SubKriteria::where('kriteria_id', $kriteria->id)
+                        ->where('min_value', '<=', $nilai)
+                        ->where('max_value', '>=', $nilai)
+                        ->first();
+
+                    $bobot = $sub ? $sub->bobot : 0;
+                    $nilaiMatrix[$kurir->id][$kriteria->id] = $bobot;
+                } else {
+                    $nilaiMatrix[$kurir->id][$kriteria->id] = 0;
+                }
+            }
         }
 
-        // 2️⃣ Normalisasi (Rij = Xij / sqrt(sum(X²j)))
+        // ===== STEP 2: NORMALISASI MATRIX =====
+        $pembagi = [];
+        foreach ($kriterias as $kriteria) {
+            $pembagi[$kriteria->id] = sqrt(array_sum(array_map(function ($kurir) use ($kriteria) {
+                return pow($kurir[$kriteria->id] ?? 0, 2);
+            }, $nilaiMatrix)));
+        }
+
         $normalisasi = [];
-        foreach ($kriterias as $kriteria) {
-            $sumKuadrat = 0;
-            foreach ($kurirs as $kurir) {
-                $nilai = $matriks[$kurir->id][$kriteria->id] ?? 0;
-                $sumKuadrat += pow($nilai, 2);
-            }
-
-            $pembagi = sqrt($sumKuadrat);
-            foreach ($kurirs as $kurir) {
-                $nilai = $matriks[$kurir->id][$kriteria->id] ?? 0;
-                $normalisasi[$kurir->id][$kriteria->id] = $pembagi > 0 ? $nilai / $pembagi : 0;
+        foreach ($nilaiMatrix as $kurirId => $kriteriaVals) {
+            foreach ($kriterias as $kriteria) {
+                $normalisasi[$kurirId][$kriteria->id] = $pembagi[$kriteria->id] != 0
+                    ? $kriteriaVals[$kriteria->id] / $pembagi[$kriteria->id]
+                    : 0;
             }
         }
 
-        // 3️⃣ Matriks Ternormalisasi Terbobot (Yij = Rij * Wj)
+        // ===== STEP 3: MATRIX TERBOBOT =====
         $terbobot = [];
-        foreach ($kurirs as $kurir) {
+        foreach ($normalisasi as $kurirId => $kriteriaVals) {
             foreach ($kriterias as $kriteria) {
-                $terbobot[$kurir->id][$kriteria->id] =
-                    ($normalisasi[$kurir->id][$kriteria->id] ?? 0) * ($kriteria->bobot / 100);
+                $terbobot[$kurirId][$kriteria->id] = $kriteriaVals[$kriteria->id] * $kriteria->bobot;
             }
         }
 
-        // 4️⃣ Solusi ideal positif dan negatif
-        $idealPositif = [];
-        $idealNegatif = [];
-
+        // ===== STEP 4: SOLUSI IDEAL =====
+        $A_plus = [];
+        $A_minus = [];
         foreach ($kriterias as $kriteria) {
-            $kolom = array_column($terbobot, $kriteria->id);
-            if ($kriteria->sifat === 'benefit') {
-                $idealPositif[$kriteria->id] = max($kolom);
-                $idealNegatif[$kriteria->id] = min($kolom);
-            } else {
-                $idealPositif[$kriteria->id] = min($kolom);
-                $idealNegatif[$kriteria->id] = max($kolom);
-            }
+            $values = array_column($terbobot, $kriteria->id);
+            $A_plus[$kriteria->id] = max($values);
+            $A_minus[$kriteria->id] = min($values);
         }
 
-        // 5️⃣ Hitung jarak ke solusi ideal positif & negatif
-        $jarakPositif = [];
-        $jarakNegatif = [];
+        // ===== STEP 5: JARAK IDEAL =====
+        $D_plus = [];
+        $D_minus = [];
+        foreach ($terbobot as $kurirId => $kriteriaVals) {
+            $D_plus[$kurirId] = sqrt(array_sum(array_map(function ($kriteria) use ($kriteriaVals, $A_plus) {
+                return pow($A_plus[$kriteria->id] - $kriteriaVals[$kriteria->id], 2);
+            }, $kriterias->all())));
 
+            $D_minus[$kurirId] = sqrt(array_sum(array_map(function ($kriteria) use ($kriteriaVals, $A_minus) {
+                return pow($kriteriaVals[$kriteria->id] - $A_minus[$kriteria->id], 2);
+            }, $kriterias->all())));
+        }
+
+        // ===== STEP 6: NILAI PREFERENSI (V) =====
+        $V = [];
         foreach ($kurirs as $kurir) {
-            $sumPositif = 0;
-            $sumNegatif = 0;
-            foreach ($kriterias as $kriteria) {
-                $yij = $terbobot[$kurir->id][$kriteria->id] ?? 0;
-                $sumPositif += pow($yij - $idealPositif[$kriteria->id], 2);
-                $sumNegatif += pow($yij - $idealNegatif[$kriteria->id], 2);
-            }
-            $jarakPositif[$kurir->id] = sqrt($sumPositif);
-            $jarakNegatif[$kurir->id] = sqrt($sumNegatif);
+            $V[$kurir->id] = ($D_plus[$kurir->id] + $D_minus[$kurir->id]) != 0
+                ? $D_minus[$kurir->id] / ($D_plus[$kurir->id] + $D_minus[$kurir->id])
+                : 0;
         }
 
-        // 6️⃣ Nilai preferensi (Vi = D- / (D+ + D-))
-        $preferensi = [];
-        foreach ($kurirs as $kurir) {
-            $dPlus = $jarakPositif[$kurir->id];
-            $dMin = $jarakNegatif[$kurir->id];
-            $preferensi[$kurir->id] = ($dPlus + $dMin) > 0 ? $dMin / ($dPlus + $dMin) : 0;
-        }
+        // ===== STEP 7: RANGKING =====
+        $ranking = collect($V)->sortDesc();
 
-        // 7️⃣ Urutkan ranking
-        arsort($preferensi);
-
-        return view('topsis.hasil', compact(
-            'preferensi',
-            'kurirs',
-            'kriterias',
-            'startDate',
-            'endDate',
-            'matriks',
-            'normalisasi',
-            'terbobot',
-            'idealPositif',
-            'idealNegatif'
+        return view('topsis.index', compact(
+            'kriterias', 'kurirs', 'nilaiMatrix', 'normalisasi', 'terbobot',
+            'A_plus', 'A_minus', 'D_plus', 'D_minus', 'V', 'ranking', 'tahun', 'periode'
         ));
     }
 }
