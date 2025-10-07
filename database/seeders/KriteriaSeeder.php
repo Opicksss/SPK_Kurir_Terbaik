@@ -49,7 +49,7 @@ class KriteriaSeeder extends Seeder
             [
                 'kode' => 'C5',
                 'nama' => 'Kesalahan Pengiriaman',
-                'bobot' => 25,
+                'bobot' => 20,
                 'sifat' => 'cost',
                 'created_at' => now(),
                 'updated_at' => now(),
