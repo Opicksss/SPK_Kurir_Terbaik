@@ -16,8 +16,8 @@ class RekapSeeder extends Seeder
     {
 
         DB::table('rekaps')->insert([
-            ['kurir_id' => 1, 'kriteria_id' => 1, 'nilai' => 3, 'date' => '2025-01-01', ],
-            ['kurir_id' => 1, 'kriteria_id' => 1, 'nilai' => 2, 'date' =>' 2025-05-01', ],
+            ['kurir_id' => 1, 'kriteria_id' => 1, 'nilai' => 6, 'date' => '2025-01-01', ],
+            ['kurir_id' => 1, 'kriteria_id' => 1, 'nilai' => 6, 'date' =>' 2025-05-01', ],
             ['kurir_id' => 1, 'kriteria_id' => 2, 'nilai' => 1, 'date' =>' 2025-01-01', ],
 
 
