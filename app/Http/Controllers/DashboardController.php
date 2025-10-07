@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hasilTopsis;
 use App\Models\Kriteria;
 use App\Models\Kurir;
 use App\Models\Rekap;
@@ -24,18 +25,8 @@ class DashboardController extends Controller
         $totalRekap = Rekap::count();
         $totalSubKriteria = SubKriteria::count();
 
+        $terbaik = hasilTopsis::with('kurir')->where('tahun', 2025)->where('periode', 1)->orderBy('ranking', 'asc')->first();
 
-
-        return view('dashboard.dashboard', compact(
-            'kriteria',
-            'subKriteria',
-            'kurir',
-            'rekap',
-            'totalKriteria',
-            'totalKurir',
-            'totalRekap',
-            'totalSubKriteria',
-
-        ));
+        return view('dashboard.dashboard', compact('kriteria', 'subKriteria', 'kurir', 'rekap', 'totalKriteria', 'totalKurir', 'totalRekap', 'totalSubKriteria', 'terbaik'));
     }
 }

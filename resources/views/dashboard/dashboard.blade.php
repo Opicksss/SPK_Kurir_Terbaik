@@ -118,8 +118,8 @@
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
                                     <p class="text-muted text-truncate font-size-15 mb-2">Rata-rata Nilai</p>
-                                    <h3 class="fs-4 flex-grow-1 mb-3"> 0 <span
-                                            class="text-muted font-size-16">Skor</span></h3>
+                                    <h3 class="fs-4 flex-grow-1 mb-3"> 0 <span class="text-muted font-size-16">Skor</span>
+                                    </h3>
                                     <p class="text-muted mb-0 text-truncate"><span
                                             class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
                                                 class="mdi mdi-arrow-top-right"></i> Rata-rata</span> Nilai Evaluasi</p>
@@ -153,29 +153,40 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5 class="mb-3">Kurir Terbaik Januari - Mei 2025</h5>
+                        @if ($terbaik)
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">
+                                            Kurir Terbaik
+                                            {{ $terbaik->periode == 1 ? 'Januari - Juni' : 'Juli - Desember' }}
+                                            {{ $terbaik->tahun }}
+                                        </h5>
 
-
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
-                                                <i class="uim uim-briefcase"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <h6 class="mb-1">Dani</h6>
-                                            <p class="text-muted mb-0">Kode: KY04</p>
-                                            <p class="text-success mb-0">Rata-rata: 89,223</p>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
+                                                    <i class="uim uim-briefcase"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1">{{ $terbaik->kurir->name }}</h6>
+                                                <p class="text-muted mb-0">Kode: {{ $terbaik->kurir->kode }}</p>
+                                                <p class="text-success mb-0">Nilai:
+                                                    {{ number_format($terbaik->nilai_preferensi, 3) }}</p>
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-                        </div>
+                        @else
+                            <div class="card-body">
+                                <div class="alert alert-warning mb-0">
+                                    Belum ada data kurir terbaik untuk periode ini.
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
 
