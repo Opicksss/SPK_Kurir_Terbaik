@@ -52,5 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 
+    Route::get('topsis', [App\Http\Controllers\TopsisController::class, 'index'])->name('topsis.index');
 
 });

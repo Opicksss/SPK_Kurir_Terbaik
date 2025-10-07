@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}" class="waves-effect active">
+                    <a href="{{ route('topsis.index') }}" class="waves-effect active">
                         <i class="uim uim-comment-message"></i>
                         <span>Perankingan</span>
                     </a>
