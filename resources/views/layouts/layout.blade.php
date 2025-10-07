@@ -17,6 +17,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- DataTables -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />
@@ -29,7 +30,6 @@
 
     <!-- plugin css -->
     <link href="assets/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" type="text/css" />
-
     <!-- Layout Js -->
     <script src="assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
@@ -89,6 +89,7 @@
     <!-- Icon -->
     <script src="unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
 
+    <script src="assets/libs/select2/js/select2.min.js"></script>
     <!-- apexcharts -->
     <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
 
@@ -120,6 +121,7 @@
     <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
     <!-- Datatable init js -->
+    <script src="assets/js/pages/form-advanced.init.js"></script>
     <script src="assets/js/pages/datatables.init.js"></script>
 
     <!-- toastr plugin -->
