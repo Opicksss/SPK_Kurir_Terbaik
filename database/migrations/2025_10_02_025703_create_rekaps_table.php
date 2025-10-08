@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kriteria_id')->nullable()->constrained('kriterias')->nullOnDelete();
             $table->foreignId('kurir_id')->nullable()->constrained('kurirs')->nullOnDelete();
-            $table->float('nilai');
+            $table->integer('nilai')->nullable();
             $table->date('date');
             $table->timestamps();
         });

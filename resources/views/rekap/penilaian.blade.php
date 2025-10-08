@@ -87,18 +87,35 @@
                                                             @method('PUT')
                                                             @foreach ($kriterias as $kriteria)
                                                                 @php
-                                                                    $nilai = $rekapItems
-                                                                        ->where('kriteria_id', $kriteria->id)
-                                                                        ->first();
+                                                                    $nilai = $rekapItems->where('kriteria_id', $kriteria->id)->first();
                                                                 @endphp
-                                                                <div class="mb-3">
-                                                                    <label>{{ $kriteria->nama }}</label>
-                                                                    <input type="number" class="form-control"
-                                                                        name="nilai[{{ $kriteria->id }}]"
-                                                                        value="{{ $nilai ? $nilai->nilai : '' }}"
-                                                                        placeholder="Masukkan Nilai" />
-                                                                </div>
+                                                                @if (strtolower($kriteria->nama) === 'keterlambatan')
+                                                                    <div class="mb-3">
+                                                                        <label>{{ $kriteria->nama }}</label>
+                                                                        <div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" type="radio" name="nilai[{{ $kriteria->id }}]" id="keterlambatan0{{ $loop->parent->iteration }}" value="0" {{ $nilai && $nilai->nilai == 0 ? 'checked' : '' }} required>
+                                                                                <label class="form-check-label" for="keterlambatan0{{ $loop->parent->iteration }}">Tidak Terlambat</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" type="radio" name="nilai[{{ $kriteria->id }}]" id="keterlambatan1{{ $loop->parent->iteration }}" value="1" {{ $nilai && $nilai->nilai == 1 ? 'checked' : '' }}>
+                                                                                <label class="form-check-label" for="keterlambatan1{{ $loop->parent->iteration }}">Terlambat</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @elseif (strtolower($kriteria->nama) !== 'masa kerja')
+                                                                    <div class="mb-3">
+                                                                        <label>{{ $kriteria->nama }}</label>
+                                                                        <input type="number" class="form-control" name="nilai[{{ $kriteria->id }}]"
+                                                                            value="{{ $nilai ? $nilai->nilai : '' }}"
+                                                                            required placeholder="Masukkan nilai {{ $kriteria->nama }}" min="0" />
+                                                                    </div>
+                                                                @endif
                                                             @endforeach
+                                                            <input type="hidden"
+                                                                name="nilai[{{ $kriterias->where('nama', 'Masa Kerja')->first()->id ?? '' }}]"
+                                                                value="{{ \Carbon\Carbon::parse($kurirs->tanggal_masuk)->diffInYears(now()) }}" />
+                                                            <input type="hidden" name="kurir_id" value="{{ $kurirs->id }}">
                                                             <div class="mb-0">
                                                                 <div class="d-flex justify-content-end">
                                                                     <button type="submit"
@@ -194,7 +211,21 @@
                                 placeholder="Masukkan Tanggal" />
                         </div>
                         @foreach ($kriterias as $kriteria)
-                            @if (strtolower($kriteria->nama) !== 'masa kerja')
+                            @if (strtolower($kriteria->nama) === 'keterlambatan')
+                                <div class="mb-3">
+                                    <label>{{ $kriteria->nama }}</label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="nilai[{{ $kriteria->id }}]" id="keterlambatan0" value="0" required>
+                                            <label class="form-check-label" for="keterlambatan0">Tidak Terlambat</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="nilai[{{ $kriteria->id }}]" id="keterlambatan1" value="1">
+                                            <label class="form-check-label" for="keterlambatan1">Terlambat</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (strtolower($kriteria->nama) !== 'masa kerja')
                                 <div class="mb-3">
                                     <label>{{ $kriteria->nama }}</label>
                                     <input type="number" class="form-control" name="nilai[{{ $kriteria->id }}]"

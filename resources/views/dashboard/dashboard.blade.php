@@ -122,31 +122,31 @@
                             </div>
                         </div>
 
-                        @if ($terbaik)
+                        @if ($terbaik && $terbaik->count())
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-4">
                                         <h5 class="mb-3">
                                             Kurir Terbaik
-                                            {{ $terbaik->periode == 1 ? 'Januari - Juni' : 'Juli - Desember' }}
-                                            {{ $terbaik->tahun }}
+                                            {{ $terbaik->first()->periode == 1 ? 'Januari - Juni' : 'Juli - Desember' }}
+                                            {{ $terbaik->first()->tahun }}
                                         </h5>
-
-                                        <div class="d-flex align-items-center mb-3">
-                                            <div class="avatar-sm flex-shrink-0">
-                                                <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
-                                                    <i class="uim uim-briefcase"></i>
-                                                </span>
+                                        @foreach ($terbaik as $item)
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
+                                                        <i class="uim uim-briefcase"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h6 class="mb-1">{{ $item->kurir->name }}</h6>
+                                                    <p class="text-muted mb-0">Kode: {{ $item->kurir->kode }}</p>
+                                                    <p class="text-success mb-0">Nilai:
+                                                        {{ number_format($item->nilai_preferensi, 3) }}</p>
+                                                </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-3">
-                                                <h6 class="mb-1">{{ $terbaik->kurir->name }}</h6>
-                                                <p class="text-muted mb-0">Kode: {{ $terbaik->kurir->kode }}</p>
-                                                <p class="text-success mb-0">Nilai:
-                                                    {{ number_format($terbaik->nilai_preferensi, 3) }}</p>
-                                            </div>
-
+                                            @endforeach
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         @else

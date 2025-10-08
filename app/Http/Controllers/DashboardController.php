@@ -25,7 +25,19 @@ class DashboardController extends Controller
         $totalRekap = Rekap::count();
         $totalSubKriteria = SubKriteria::count();
 
-        $terbaik = hasilTopsis::with('kurir')->where('tahun', 2025)->where('periode', 1)->orderBy('ranking', 'asc')->first();
+        $latest = hasilTopsis::orderByDesc('tahun')
+            ->orderByDesc('periode')
+            ->first();
+
+        $terbaik = collect();
+        if ($latest) {
+            $terbaik = hasilTopsis::with('kurir')
+            ->where('tahun', $latest->tahun)
+            ->where('periode', $latest->periode)
+            ->orderBy('ranking', 'asc')
+            ->take(3)
+            ->get();
+        }
 
         return view('dashboard.dashboard', compact('kriteria', 'subKriteria', 'kurir', 'rekap', 'totalKriteria', 'totalKurir', 'totalRekap', 'totalSubKriteria', 'terbaik'));
     }
