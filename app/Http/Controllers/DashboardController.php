@@ -39,6 +39,16 @@ class DashboardController extends Controller
             ->get();
         }
 
-        return view('dashboard.dashboard', compact('kriteria', 'subKriteria', 'kurir', 'rekap', 'totalKriteria', 'totalKurir', 'totalRekap', 'totalSubKriteria', 'terbaik'));
+        // Hitung sisa data rekap hari ini
+        $today = now()->toDateString();
+        // Ambil semua kurir yang sudah diisi rekap untuk hari ini (distinct kurir_id)
+        $rekapHariIni = Rekap::where('date', $today)->distinct('kurir_id')->pluck('kurir_id');
+        $sisaRekapHariIni = $totalKurir - $rekapHariIni->count();
+
+        return view('dashboard.dashboard', compact(
+            'kriteria', 'subKriteria', 'kurir', 'rekap',
+            'totalKriteria', 'totalKurir', 'totalRekap', 'totalSubKriteria',
+            'terbaik', 'sisaRekapHariIni'
+        ));
     }
 }

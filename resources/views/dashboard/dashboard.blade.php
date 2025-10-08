@@ -14,7 +14,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="avatar-md flex-shrink-0">
                                     <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
-                                        <i class="uim uim-briefcase"></i>
+                                        <i class="uim uim-layers-alt"></i>
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
@@ -80,16 +80,19 @@
                             <div class="d-flex align-items-center">
                                 <div class="avatar-md flex-shrink-0">
                                     <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
-                                        <i class="uim uim-scenery"></i>
+                                        <i class="uim uim-document-layout-left"></i>
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
                                     <p class="text-muted text-truncate font-size-15 mb-2">Rekap Hari Ini</p>
-                                    <h3 class="fs-4 flex-grow-1 mb-3">{{ $totalRekap }} <span
+                                    <h3 class="fs-4 flex-grow-1 mb-3">{{ $sisaRekapHariIni }} <span
                                             class="text-muted font-size-16">Data</span></h3>
-                                    <p class="text-muted mb-0 text-truncate"><span
-                                            class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-top-right"></i> Evaluasi</span> Data Penilaian</p>
+                                    <p class="text-muted mb-0 text-truncate">
+                                        <span class="badge bg-subtle-success text-success font-size-12 fw-normal me-1">
+                                            <i class="mdi mdi-arrow-top-right"></i> Sisa
+                                        </span>
+                                         Data Belum Dievaluasi
+                                    </p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -135,7 +138,7 @@
                                             <div class="d-flex align-items-center mb-3">
                                                 <div class="avatar-sm flex-shrink-0">
                                                     <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
-                                                        <i class="uim uim-briefcase"></i>
+                                                        <i class="mdi mdi-account-circle"></i>
                                                     </span>
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">

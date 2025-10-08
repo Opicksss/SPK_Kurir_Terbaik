@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    hasil topsis
+    Hasil TOPSIS
 @endsection
 
 @section('content')
@@ -161,7 +161,7 @@
                                     {{-- ================= 6️⃣ NILAI PREFERENSI DAN RANKING ================= --}}
                                     <h5 class="mt-4">6️⃣ Nilai Preferensi (V) dan Ranking</h5>
                                     <table id="dtabel" class="table table-striped table-bordered dt-responsive nowrap"
-                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th width="10%">Peringkat</th>
