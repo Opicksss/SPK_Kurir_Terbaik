@@ -37,69 +37,52 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="/" class="waves-effect active">
+                    <a href="{{ route('dashboard') }}" class="waves-effect {{ request()->is('dashboard') ? 'active' : '' }}">
                         <i class="uim uim-airplay"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('kurir.index') }}" class="waves-effect active">
-                        <i class="uim uim-comment-message"></i>
+                    <a href="{{ route('kurir.index') }}"
+                        class="waves-effect {{ request()->is('kurir*') ? 'active' : '' }}">
+                        <i class="uim uim-layer-group"></i>
                         <span>Kurir</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('rekap.index') }}" class="waves-effect active">
-                        <i class="uim uim-comment-message"></i>
+                    <a href="{{ route('rekap.index') }}"
+                        class="waves-effect {{ request()->is('rekap*') ? 'active' : '' }}">
+                        <i class="uim uim-document-layout-left"></i>
                         <span>Rekap</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('kriteria.index') }}" class="waves-effect active">
-                        <i class="uim uim-comment-message"></i>
+                    <a href="{{ route('kriteria.index') }}"
+                        class="waves-effect {{ request()->is('kriteria*') ? 'active' : '' }}">
+                        <i class="uim uim-layers-alt"></i>
                         <span>Kriteria</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('admin.index') }}" class="waves-effect active">
-                        <i class="uim uim-comment-message"></i>
-                        <span>Perhitungan</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('topsis.index') }}" class="waves-effect active">
-                        <i class="uim uim-comment-message"></i>
+                    <a href="{{ route('topsis.index') }}"
+                        class="waves-effect {{ request()->is('topsis*') ? 'active' : '' }}">
+                        <i class="uim uim-graph-bar"></i>
                         <span>Perankingan</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('admin.index') }}" class="waves-effect active">
-                        <i class="uim uim-comment-message"></i>
+                    <a href="{{ route('admin.index') }}"
+                        class="waves-effect {{ request()->is('admin*') ? 'active' : '' }}">
+                        <i class="uim uim-lock-access"></i>
                         <span>Management Account</span>
                     </a>
                 </li>
 
-                {{-- <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="uim uim-comment-message"></i>
-                        <span>Management Account</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-
-                        @auth
-                            @if (Auth::user()->role === 'admin' || Auth::user()->role === 'superadmin')
-                                <li><a href="{{ route('admin.index') }}">Admin</a></li>
-                            @endif
-                        @endauth
-
-                        @auth
-                            @if (Auth::user()->role === 'superadmin')
-                                <li><a href="{{ route('superadmin.index') }}">Super Admin</a></li>
-                            @endif
-                        @endauth
-
-                    </ul>
-                </li> --}}
             </ul>
 
         </div>

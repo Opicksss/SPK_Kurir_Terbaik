@@ -12,21 +12,21 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="container">
-                                <h3 class="mb-3">Perhitungan TOPSIS ({{ $periode == 1 ? 'Jan–Jun' : 'Jul–Des' }}
+                                <h3 class="mb-3">Perhitungan TOPSIS ({{ $periode == 1 ? 'Januari–Juni' : 'Juli–Desember' }}
                                     {{ $tahun }})</h3>
 
-                                <form method="GET" class="mb-4">
+                                {{-- <form method="GET" class="mb-4">
                                     <div class="row g-2">
                                         <div class="col-md-3">
-                                            <select name="tahun" class="form-control">
+                                            <select name="tahun" class="form-control select2">
                                                 @for ($t = date('Y') - 2; $t <= date('Y') + 1; $t++)
                                                     <option value="{{ $t }}"
                                                         {{ $t == $tahun ? 'selected' : '' }}>{{ $t }}</option>
                                                 @endfor
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
-                                            <select name="periode" class="form-control">
+                                        <div class="col-md-7">
+                                            <select name="periode" class="form-control select2">
                                                 <option value="1" {{ $periode == 1 ? 'selected' : '' }}>Januari – Juni
                                                 </option>
                                                 <option value="2" {{ $periode == 2 ? 'selected' : '' }}>Juli – Desember
@@ -37,7 +37,30 @@
                                             <button class="btn btn-primary w-100">Tampilkan</button>
                                         </div>
                                     </div>
+                                </form> --}}
+
+                                <form method="GET" class="mb-4">
+                                    <div class="row g-2">
+                                        <div class="col-md-10">
+                                            <select name="tahun_periode" class="form-control select2">
+                                                @foreach ($tahunList as $t)
+                                                    <option value="{{ $t }}-1"
+                                                        {{ $t == $tahun && $periode == 1 ? 'selected' : '' }}>
+                                                        (Januari–Juni) {{ $t }}
+                                                    </option>
+                                                    <option value="{{ $t }}-2"
+                                                        {{ $t == $tahun && $periode == 2 ? 'selected' : '' }}>
+                                                        (Juli–Desember) {{ $t }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-primary w-100">Tampilkan</button>
+                                        </div>
+                                    </div>
                                 </form>
+
 
                                 {{-- ================= 1️⃣ MATRIX NILAI (KONVERSI SUBKRITERIA) ================= --}}
                                 <h5>1️⃣ Matrix Keputusan (Konversi Nilai → Bobot Subkriteria)</h5>
