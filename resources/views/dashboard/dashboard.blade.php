@@ -119,24 +119,30 @@
                         <div class="card-header border-0 align-items-center d-flex pb-0">
                             <h4 class="card-title mb-0 flex-grow-1">Statistik Evaluasi Kurir</h4>
                             <div>
-                                <a href="{{ route('topsis.index', ['periode_tahun' => $terbaik->first()->tahun . '-' . $terbaik->first()->periode]) }}" class="btn btn-soft-primary btn-sm">
-                                    Lihat Detail
-                                </a>
+                                @if ($terbaik && $terbaik->count())
+                                    <a href="{{ route('topsis.index', ['periode_tahun' => $terbaik->first()->tahun . '-' . $terbaik->first()->periode]) }}" class="btn btn-soft-primary btn-sm">
+                                        Lihat Detail
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-soft-secondary btn-sm disabled">
+                                        Lihat Detail
+                                    </a>
+                                @endif
                             </div>
                         </div>
 
                         @if ($terbaik && $terbaik->count())
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6 mb-4">
+                                    <div class="col-md-12 mb-4">
                                         <h5 class="mb-3">
-                                            Kurir Terbaik
+                                            Kurir Terbaik Periode
                                             {{ $terbaik->first()->periode == 1 ? 'Januari - Juni' : 'Juli - Desember' }}
                                             {{ $terbaik->first()->tahun }}
                                         </h5>
                                         @foreach ($terbaik as $item)
                                             <div class="d-flex align-items-center mb-3">
-                                                <div class="avatar-sm flex-shrink-0">
+                                                <div class="avatar-md flex-shrink-0">
                                                     <span class="avatar-title bg-subtle-primary text-primary rounded fs-2">
                                                         <i class="mdi mdi-account-circle"></i>
                                                     </span>
@@ -144,6 +150,7 @@
                                                 <div class="flex-grow-1 ms-3">
                                                     <h6 class="mb-1">{{ $item->kurir->name }}</h6>
                                                     <p class="text-muted mb-0">Kode: {{ $item->kurir->kode }}</p>
+                                                    <p class="text-muted mb-0">Alamat: {{ $item->kurir->alamat }}</p>
                                                     <p class="text-success mb-0">Nilai:
                                                         {{ number_format($item->nilai_preferensi, 3) }}</p>
                                                 </div>
@@ -167,7 +174,7 @@
                    <div class="card mb-0">
                         <div id="external-events">
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="margin-top: 10px; margin-bottom: 10px;">
                             <div id="calendar"></div>
                         </div>
                     </div>
