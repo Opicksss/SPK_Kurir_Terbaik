@@ -116,7 +116,7 @@
                         <div class="card-header border-0 align-items-center d-flex pb-0">
                             <h4 class="card-title mb-0 flex-grow-1">Statistik Evaluasi Kurir</h4>
                             <div>
-                                <a href="{{ route('rekap.index') }}" class="btn btn-soft-primary btn-sm">
+                                <a href="{{ route('topsis.index', ['periode_tahun' => $terbaik->first()->tahun . '-' . $terbaik->first()->periode]) }}" class="btn btn-soft-primary btn-sm">
                                     Lihat Detail
                                 </a>
                             </div>

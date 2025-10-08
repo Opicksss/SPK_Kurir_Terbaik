@@ -38,21 +38,25 @@
 
                                             @foreach ($kriterias as $kriteria)
                                                 @php
-                                                    if (strtolower($kriteria->nama) !== 'masa kerja') {
-                                                        $totalNilai = $rekaps
+                                                    $isMasaKerja = strtolower(trim($kriteria->nama)) == 'masa kerja';
+                                                    if ($isMasaKerja) {
+                                                        $nilai = $rekaps
+                                                            ->where('kurir_id', $item->id)
+                                                            ->where('kriteria_id', $kriteria->id)
+                                                            ->first()->nilai ?? null;
+                                                    } else {
+                                                        $nilai = $rekaps
                                                             ->where('kurir_id', $item->id)
                                                             ->where('kriteria_id', $kriteria->id)
                                                             ->sum('nilai');
-                                                    } else {
-                                                        $totalNilai =
-                                                            $rekaps
-                                                                ->where('kurir_id', $item->id)
-                                                                ->where('kriteria_id', $kriteria->id)
-                                                                ->first()->nilai ?? '-';
                                                     }
                                                 @endphp
                                                 <td>
-                                                    {{ $totalNilai > 0 ? $totalNilai : '-' }}
+                                                    @if ($isMasaKerja)
+                                                        {{ $nilai ? $nilai . ' tahun' : '-' }}
+                                                    @else
+                                                        {{ $nilai > 0 ? $nilai . ' kali' : '-' }}
+                                                    @endif
                                                 </td>
                                             @endforeach
                                             <td>

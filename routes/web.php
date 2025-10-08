@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KriteriaController;
-use App\Http\Controllers\KurirController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SubKriteriaController;
-use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KurirController;
+use App\Http\Controllers\RekapController;
+use App\Http\Controllers\TopsisController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubKriteriaController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/dashboard', function () {
@@ -52,6 +53,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 
-    Route::get('topsis', [App\Http\Controllers\TopsisController::class, 'index'])->name('topsis.index');
+    Route::get('topsis', [TopsisController::class, 'index'])->name('topsis.index');
 
 });

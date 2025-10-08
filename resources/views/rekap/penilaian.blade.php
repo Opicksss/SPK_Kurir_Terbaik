@@ -49,7 +49,11 @@
                                                     $nilai = $rekapItems->where('kriteria_id', $kriteria->id)->first();
                                                 @endphp
                                                 <td>
-                                                    {{ $nilai ? $nilai->nilai : '-' }}
+                                                    @if (strtolower($kriteria->nama) == 'masa kerja')
+                                                        {{ $nilai ? $nilai->nilai . ' tahun' : '-' }}
+                                                    @else
+                                                        {{ $nilai ? $nilai->nilai . ' kali' : '-' }}
+                                                    @endif
                                                 </td>
                                             @endforeach
                                             <td>
