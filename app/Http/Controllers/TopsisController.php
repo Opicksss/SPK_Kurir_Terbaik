@@ -159,7 +159,7 @@ class TopsisController extends Controller
         hasilTopsis::where('tahun', $tahun)->where('periode', $periode)->delete();
         $rank = 1;
         foreach ($ranking as $kurirId => $nilaiV) {
-            HasilTopsis::create([
+            HasilTopsis::createo([
                 'kurir_id' => $kurirId,
                 'tahun' => $tahun,
                 'periode' => $periode,
