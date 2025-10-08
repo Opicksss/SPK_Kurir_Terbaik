@@ -37,7 +37,7 @@ class KurirSeeder extends Seeder
             ],
              [
                 'kode' => 'KR4',
-                'name' => 'lilik',
+                'name' => 'fiki',
                 'alamat' => '789 Pine St, Villageville',
                 'nomor' => '083456789000',
                 'tanggal_masuk' => '2025-07-30',

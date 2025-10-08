@@ -11,4 +11,13 @@ class Kurir extends Model
     protected $fillable = ['kode', 'name', 'alamat', 'nomor', 'tanggal_masuk'];
 
     protected $guarded = ['id'];
+
+    public function rekaps()
+    {
+        return $this->hasMany(Rekap::class);
+    }
+    public function hasilTopsis()
+    {
+        return $this->hasMany(hasilTopsis::class);
+    }
 }
