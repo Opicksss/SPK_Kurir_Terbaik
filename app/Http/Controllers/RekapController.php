@@ -98,9 +98,21 @@ class RekapController extends Controller
     {
         try {
             $request->validate([
+                'date' => 'required|date',
                 'nilai' => 'required|array',
                 'nilai.*' => 'nullable|numeric|min:0',
             ]);
+
+            // Cek apakah sudah ada data dengan tanggal yang sama (selain yang sedang diupdate)
+            $exists = Rekap::where('date', $request->date)
+                ->where('date', '!=', $id)
+                ->exists();
+
+            if ($exists) {
+                return redirect()
+                    ->back()
+                    ->with('error', "Data untuk tanggal {$request->date} sudah ada. Proses update dibatalkan.");
+            }
 
             DB::transaction(function () use ($request, $id) {
                 foreach ($request->nilai as $kriteriaId => $nilai) {
@@ -109,6 +121,7 @@ class RekapController extends Controller
                             ->where('kriteria_id', $kriteriaId)
                             ->update([
                                 'nilai' => floor($nilai),
+                                'date' => $request->date,
                             ]);
                     }
                 }

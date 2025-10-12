@@ -89,6 +89,11 @@
                                                         <form action="{{ route('rekap.update', $date) }}" method="POST">
                                                             @csrf
                                                             @method('PUT')
+                                                            <div class="mb-3">
+                                                                <label>Tanggal</label>
+                                                                <input type="date" class="form-control" name="date"
+                                                                    value="{{ \Carbon\Carbon::parse($date)->format('Y-m-d') }}" required />
+                                                            </div>
                                                             @foreach ($kriterias as $kriteria)
                                                                 @php
                                                                     $nilai = $rekapItems->where('kriteria_id', $kriteria->id)->first();

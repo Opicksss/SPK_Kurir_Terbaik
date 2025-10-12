@@ -7,8 +7,6 @@ use App\Models\Kriteria;
 use App\Models\Kurir;
 use App\Models\Rekap;
 use App\Models\SubKriteria;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {

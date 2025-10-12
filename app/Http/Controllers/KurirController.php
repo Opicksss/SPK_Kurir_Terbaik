@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kurir;
+use App\Models\Rekap;
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
 
 class KurirController extends Controller
@@ -76,11 +78,55 @@ class KurirController extends Controller
                 'tanggal_masuk' => 'required|date',
             ]);
 
+            $oldTanggalMasuk = $kurir->tanggal_masuk;
             $kurir->update($validated);
+
+            // Update masa kerja di rekap jika tanggal_masuk berubah
+            if (strtolower($oldTanggalMasuk) !== strtolower($validated['tanggal_masuk'])) {
+                $this->updateMasaKerjaRekap($kurir->id, $oldTanggalMasuk, $validated['tanggal_masuk']);
+            }
+
             return redirect()->back()->with('success', 'Kurir berhasil di update');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupdate Kurir. Silakan coba lagi.');
         }
+    }
+
+    /**
+     * Update masa kerja di tabel rekap berdasarkan perubahan tanggal_masuk kurir.
+     */
+    private function updateMasaKerjaRekap($kurirId, $oldTanggalMasuk, $newTanggalMasuk)
+    {
+        // Ambil semua rekap untuk kurir ini yang punya kriteria masa kerja (case-insensitive)
+        $masaKerjaKriteria = Kriteria::whereRaw('LOWER(nama) = ?', ['masa kerja'])->first();
+
+        if (!$masaKerjaKriteria) {
+            return;
+        }
+
+        $rekaps = Rekap::where('kurir_id', $kurirId)
+            ->where('kriteria_id', $masaKerjaKriteria->id)
+            ->get();
+
+        foreach ($rekaps as $rekap) {
+            // Hitung masa kerja baru berdasarkan tanggal_masuk yang baru
+            $dateRekap = $rekap->date;
+            $masaKerjaBaru = $this->hitungMasaKerja($newTanggalMasuk, $dateRekap);
+
+            // Update nilai masa kerja di rekap
+            $rekap->update(['nilai' => $masaKerjaBaru]);
+        }
+    }
+
+    /**
+     * Hitung masa kerja (dalam tahun, dibulatkan ke bawah) dari tanggal masuk ke tanggal rekap.
+     */
+    private function hitungMasaKerja($tanggalMasuk, $tanggalRekap)
+    {
+        $masuk = new \DateTime($tanggalMasuk);
+        $rekap = new \DateTime($tanggalRekap);
+        $interval = $masuk->diff($rekap);
+        return $interval->y; // tahun
     }
 
     /**
