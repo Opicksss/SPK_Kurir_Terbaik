@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             KriteriaSeeder::class,
             SubKriteriaSeeder::class,
             KurirSeeder::class,
-            RekapSeeder::class,
+            // RekapSeeder::class,
         ]);
     }
 }

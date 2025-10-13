@@ -33,6 +33,16 @@ class TopsisController extends Controller
      */
     private function getTotalNilai($rekaps, $kurirId, $kriteriaId)
     {
+        $kriteria = Kriteria::find($kriteriaId);
+        if (strtolower($kriteria->nama) === 'masa kerja') {
+            // Ambil rekap bulan terakhir
+            $rekap = $rekaps->where('kurir_id', $kurirId)
+                ->where('kriteria_id', $kriteriaId)
+                ->sortByDesc('date')
+                ->first();
+            return $rekap ? $rekap->nilai : 0;
+        }
+        // Default: jumlahkan semua
         return $rekaps->where('kurir_id', $kurirId)->where('kriteria_id', $kriteriaId)->sum('nilai');
     }
 
@@ -93,7 +103,8 @@ class TopsisController extends Controller
             } else {
                 // === STEP 1: Ambil data dasar ===
                 $kriterias = Kriteria::all();
-                $kurirs = Kurir::all();
+                $kurirIds = $rekaps->pluck('kurir_id')->unique();
+                $kurirs = Kurir::whereIn('id', $kurirIds)->get();
 
                 // === STEP 2: Buat matriks nilai (X) ===
                 $nilaiMatrix = [];
