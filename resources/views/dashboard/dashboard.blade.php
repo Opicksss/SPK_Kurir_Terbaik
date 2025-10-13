@@ -8,7 +8,7 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -23,7 +23,7 @@
                                             class="text-muted font-size-16">Kriteria</span></h3>
                                     <p class="text-muted mb-0 text-truncate"><span
                                             class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-top-right"></i> Active</span> Kriteria Evaluasi</p>
+                                                class="mdi mdi-arrow-top-right"></i> Active</span></p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -32,7 +32,7 @@
                                             <i class="ri-more-2-fill text-muted font-size-16"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="{{ route('kriteria.index') }}">Lihat Detail</a>
+                                            <a class="dropdown-item" href="{{ route('kriteria.index') }}"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -84,12 +84,12 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-4">
-                                    <p class="text-muted text-truncate font-size-15 mb-2">Total Rekap</p>
+                                    <p class="text-muted text-truncate font-size-15 mb-2">Belum Rekap</p>
                                     <h3 class="fs-4 flex-grow-1 mb-3">{{ $totalRekap }} <span
                                             class="text-muted font-size-16">Data</span></h3>
                                     <p class="text-muted mb-0 text-truncate"><span
                                             class="badge bg-subtle-success text-success font-size-12 fw-normal me-1"><i
-                                                class="mdi mdi-arrow-top-right"></i> Evaluasi</span> Data Penilaian</p>
+                                                class="mdi mdi-arrow-top-right"></i> Evaluasi</span></p>
                                 </div>
                                 <div class="flex-shrink-0 align-self-start">
                                     <div class="dropdown">
@@ -98,7 +98,7 @@
                                             <i class="ri-more-2-fill text-muted font-size-16"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="{{ route('rekap.index') }}">Lihat Detail</a>
+                                            <a class="dropdown-item" href="{{ route('rekap.index') }}"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                {{-- <div class="col-xl-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!-- END ROW -->
 
