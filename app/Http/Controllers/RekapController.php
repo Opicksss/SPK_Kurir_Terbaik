@@ -104,14 +104,21 @@ class RekapController extends Controller
             ]);
 
             // Cek apakah sudah ada data dengan tanggal yang sama (selain yang sedang diupdate)
-            $exists = Rekap::where('date', $request->date)
-                ->where('date', '!=', $id)
-                ->exists();
+            $exists = false;
+            foreach ($request->nilai as $kriteriaId => $nilai) {
+                if ($nilai !== null) {
+                    $exists = Rekap::where('kurir_id', $request->kurir_id)
+                        ->where('kriteria_id', $kriteriaId)
+                        ->where('date', $request->date)
+                        ->where('date', '!=', $id)
+                        ->exists();
 
-            if ($exists) {
-                return redirect()
-                    ->back()
-                    ->with('error', "Data untuk tanggal {$request->date} sudah ada. Proses update dibatalkan.");
+                    if ($exists) {
+                        return redirect()
+                            ->back()
+                            ->with('error', "Data untuk tanggal {$request->date} sudah ada. Proses update dibatalkan.");
+                    }
+                }
             }
 
             DB::transaction(function () use ($request, $id) {
