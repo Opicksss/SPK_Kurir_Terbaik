@@ -31,7 +31,7 @@ class RekapController extends Controller
 
     public function detail($kurir_id)
     {
-        $rekaps = Rekap::where('kurir_id', $kurir_id)->orderBy('created_at', 'desc')->get();
+        $rekaps = Rekap::where('kurir_id', $kurir_id)->orderBy('date', 'desc')->get();
         $kurirs = Kurir::findOrFail($kurir_id);
         $kriterias = Kriteria::all();
         return view('rekap.penilaian', compact('rekaps', 'kurirs', 'kriterias'));
