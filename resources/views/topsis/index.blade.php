@@ -62,7 +62,7 @@
                                                         <td>{{ $kurir->name }}</td>
                                                         @foreach ($kriterias as $k)
                                                             <td>
-                                                                {{ number_format($nilaiMatrix[$kurir->id][$k->id] ?? 0, 4) }}
+                                                               {{ $nilaiMatrix[$kurir->id][$k->id] ?? 0 }}
                                                                 <div class="text-muted" style="font-size: 11px;">
                                                                     nilai:
                                                                     {{ number_format($nilaiAsliMatrix[$kurir->id][$k->id] ?? 0, 0) }}

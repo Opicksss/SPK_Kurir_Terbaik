@@ -14,45 +14,62 @@ class RekapSeeder extends Seeder
 {
     public function run(): void
     {
+        $data = [
+            // Kurir 1
+            [
+                'kurir_id' => 1,
+                'masa_kerja' => 1,
+                // Bulan 1-6 dan 7-12 dibedakan
+                'keterlambatan' => [0, 1, 2, 1, 0, 1, 3, 4, 3, 4, 3, 4],
+                'trip_ojek'     => [10, 12, 15, 13, 11, 14, 20, 22, 21, 23, 21, 24],
+                'trip_barang'   => [20, 22, 25, 23, 21, 24, 30, 32, 31, 33, 31, 34],
+                'kesalahan'     => [1, 2, 1, 2, 1, 2, 3, 2, 3, 2, 3, 2],
+            ],
+            // Kurir 2
+            [
+                'kurir_id' => 2,
+                'masa_kerja' => 1,
+                'keterlambatan' => [3, 2, 1, 0, 1, 2, 5, 6, 5, 6, 5, 6],
+                'trip_ojek'     => [30, 32, 35, 33, 31, 34, 40, 42, 41, 43, 41, 44],
+                'trip_barang'   => [40, 42, 45, 43, 41, 44, 50, 52, 51, 53, 51, 54],
+                'kesalahan'     => [2, 1, 2, 1, 2, 1, 4, 5, 4, 5, 4, 5],
+            ],
+            // Kurir 3
+            [
+                'kurir_id' => 3,
+                'masa_kerja' => 1,
+                'keterlambatan' => [5, 4, 3, 2, 1, 0, 7, 8, 7, 8, 7, 8],
+                'trip_ojek'     => [50, 52, 55, 53, 51, 54, 60, 62, 61, 63, 61, 64],
+                'trip_barang'   => [60, 62, 65, 63, 61, 64, 70, 72, 71, 73, 71, 74],
+                'kesalahan'     => [3, 2, 3, 2, 3, 2, 6, 7, 6, 7, 6, 7],
+            ],
+            // Kurir 4
+            [
+                'kurir_id' => 4,
+                'masa_kerja' => 2,
+                'keterlambatan' => [6, 7, 8, 7, 6, 7, 9, 10, 9, 10, 9, 10],
+                'trip_ojek'     => [70, 72, 75, 73, 71, 74, 80, 82, 81, 83, 81, 84],
+                'trip_barang'   => [80, 82, 85, 83, 81, 84, 90, 92, 91, 93, 91, 94],
+                'kesalahan'     => [4, 5, 4, 5, 4, 5, 8, 9, 8, 9, 8, 9],
+            ],
+        ];
 
-        DB::table('rekaps')->insert([
-            ['kurir_id' => 1, 'kriteria_id' => 1, 'nilai' => 6, 'date' => '2025-01-01', ],
-            ['kurir_id' => 1, 'kriteria_id' => 1, 'nilai' => 6, 'date' =>' 2025-05-01', ],
-            ['kurir_id' => 1, 'kriteria_id' => 2, 'nilai' => 1, 'date' =>' 2025-01-01', ],
+        $dates = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $dates[] = '2025-' . str_pad($m, 2, '0', STR_PAD_LEFT) . '-01';
+        }
 
+        $insert = [];
+        foreach ($data as $kurir) {
+            foreach ($dates as $i => $date) {
+                $insert[] = ['kurir_id' => $kurir['kurir_id'], 'kriteria_id' => 1, 'nilai' => $kurir['keterlambatan'][$i], 'date' => $date];
+                $insert[] = ['kurir_id' => $kurir['kurir_id'], 'kriteria_id' => 2, 'nilai' => $kurir['masa_kerja'], 'date' => $date];
+                $insert[] = ['kurir_id' => $kurir['kurir_id'], 'kriteria_id' => 3, 'nilai' => $kurir['trip_ojek'][$i], 'date' => $date];
+                $insert[] = ['kurir_id' => $kurir['kurir_id'], 'kriteria_id' => 4, 'nilai' => $kurir['trip_barang'][$i], 'date' => $date];
+                $insert[] = ['kurir_id' => $kurir['kurir_id'], 'kriteria_id' => 5, 'nilai' => $kurir['kesalahan'][$i], 'date' => $date];
+            }
+        }
 
-            [ 'kurir_id' => 1,'kriteria_id' => 3, 'nilai' => 250,'date' => '2025-04-01',],
-            [ 'kurir_id' => 1,'kriteria_id' => 4, 'nilai' => 50, 'date' => '2025-03-05',],
-            [ 'kurir_id' => 1,'kriteria_id' => 5, 'nilai' => 8, 'date' => '2025-03-05',],
-
-
-
-            // Entries for Sovi
-            [ 'kurir_id' => 2, 'kriteria_id' => 1, 'nilai' => 10,  'date' => '2025-01-01', ],
-            [ 'kurir_id' => 2, 'kriteria_id' => 1, 'nilai' => 2, 'date' => '2025-02-01', ],
-            ['kurir_id' => 2, 'kriteria_id' => 2, 'nilai' => 1, 'date' =>' 2025-01-01', ],
-            [ 'kurir_id' => 2, 'kriteria_id' => 3, 'nilai' => 50, 'date' => '2025-03-01',],
-
-             [ 'kurir_id' => 2, 'kriteria_id' => 3, 'nilai' => 5, 'date' => '2025-03-05',],
-
-
-            ['kurir_id' => 2,'kriteria_id' => 4, 'nilai' => 120, 'date' => '2025-03-01',],
-            ['kurir_id' => 2,'kriteria_id' => 5,'nilai' => 11,'date' => '2025-03-01',],
-
-
-            ['kurir_id' => 3, 'kriteria_id' => 1, 'nilai' => 17, 'date' => '2025-01-20'],
-            ['kurir_id' => 3, 'kriteria_id' => 2, 'nilai' => 1, 'date' =>' 2025-01-01', ],
-            ['kurir_id' => 3, 'kriteria_id' => 3, 'nilai' => 205, 'date' => '2025-01-20'],
-            ['kurir_id' => 3, 'kriteria_id' => 4, 'nilai' => 55, 'date' => '2025-01-20'],
-            ['kurir_id' => 3, 'kriteria_id' => 5, 'nilai' => 14, 'date' => '2025-01-20'],
-
-            ['kurir_id' => 4, 'kriteria_id' => 1, 'nilai' => 25, 'date' => '2025-02-20'],
-            ['kurir_id' => 4, 'kriteria_id' => 2, 'nilai' => 1, 'date' =>' 2025-01-01', ],
-            ['kurir_id' => 4, 'kriteria_id' => 3, 'nilai' => 111, 'date' => '2025-02-20'],
-            ['kurir_id' => 4, 'kriteria_id' => 4, 'nilai' => 55, 'date' => '2025-02-20'],
-            ['kurir_id' => 4, 'kriteria_id' => 5, 'nilai' => 11, 'date' => '2025-02-20'],
-
-
-        ]);
+        DB::table('rekaps')->insert($insert);
     }
 }
