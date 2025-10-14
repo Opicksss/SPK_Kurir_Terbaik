@@ -46,7 +46,7 @@ class RekapController extends Controller
             $request->validate([
                 'kurir_id' => 'required|exists:kurirs,id',
                 'nilai' => 'required|array',
-                'nilai.*' => 'required|numeric|min:0',
+                'nilai.*' => 'nullable|numeric|min:0',
                 'date' => 'required|date',
             ]);
 
@@ -54,7 +54,24 @@ class RekapController extends Controller
             $date = $request->input('date');
             $nilaiData = $request->input('nilai');
 
+            $kurir = Kurir::findOrFail($kurirId);
+
+            // Cari kriteria "masa kerja" (case-insensitive)
+            $masaKerjaKriteria = Kriteria::whereRaw('LOWER(nama) = ?', ['masa kerja'])->first();
+            $masaKerjaKeyExists = $masaKerjaKriteria && array_key_exists($masaKerjaKriteria->id, $nilaiData) && $nilaiData[$masaKerjaKriteria->id] !== null;
+
             foreach ($nilaiData as $kriteriaId => $nilai) {
+                // Jika kriteria masa kerja, hitung otomatis berdasarkan tanggal masuk kurir
+                if ($masaKerjaKriteria && (int) $kriteriaId === (int) $masaKerjaKriteria->id) {
+                    $nilaiToStore = $this->hitungMasaKerja($kurir->tanggal_masuk, $date);
+                } else {
+                    // Jika nilai tidak dikirim dari view, lewati
+                    if ($nilai === null) {
+                        continue;
+                    }
+                    $nilaiToStore = floor($nilai);
+                }
+
                 $exists = Rekap::where('kurir_id', $kurirId)->where('kriteria_id', $kriteriaId)->where('date', $date)->exists();
 
                 if ($exists) {
@@ -66,9 +83,26 @@ class RekapController extends Controller
                 Rekap::create([
                     'kurir_id' => $kurirId,
                     'kriteria_id' => $kriteriaId,
-                    'nilai' => floor($nilai),
+                    'nilai' => $nilaiToStore,
                     'date' => $date,
                 ]);
+            }
+
+            // Jika kriteria masa kerja tidak dikirim dari view, tambahkan secara otomatis
+            if ($masaKerjaKriteria && !$masaKerjaKeyExists) {
+                $kriteriaId = $masaKerjaKriteria->id;
+                $nilaiToStore = $this->hitungMasaKerja($kurir->tanggal_masuk, $date);
+
+                $exists = Rekap::where('kurir_id', $kurirId)->where('kriteria_id', $kriteriaId)->where('date', $date)->exists();
+
+                if (!$exists) {
+                    Rekap::create([
+                        'kurir_id' => $kurirId,
+                        'kriteria_id' => $kriteriaId,
+                        'nilai' => $nilaiToStore,
+                        'date' => $date,
+                    ]);
+                }
             }
 
             return redirect()->back()->with('success', 'Rekap nilai berhasil disimpan.');
@@ -103,15 +137,21 @@ class RekapController extends Controller
                 'nilai.*' => 'nullable|numeric|min:0',
             ]);
 
+            $rekaps = Rekap::where('date', $id)->get();
+            if ($rekaps->isEmpty()) {
+                return redirect()->back()->with('error', 'Data rekap tidak ditemukan.');
+            }
+
+            $kurirId = $rekaps->first()->kurir_id;
+            $kurir = Kurir::findOrFail($kurirId);
+
+            // Cari kriteria "masa kerja" (case-insensitive)
+            $masaKerjaKriteria = Kriteria::whereRaw('LOWER(nama) = ?', ['masa kerja'])->first();
+
             // Cek apakah sudah ada data dengan tanggal yang sama (selain yang sedang diupdate)
-            $exists = false;
             foreach ($request->nilai as $kriteriaId => $nilai) {
                 if ($nilai !== null) {
-                    $exists = Rekap::where('kurir_id', $request->kurir_id)
-                        ->where('kriteria_id', $kriteriaId)
-                        ->where('date', $request->date)
-                        ->where('date', '!=', $id)
-                        ->exists();
+                    $exists = Rekap::where('kurir_id', $kurirId)->where('kriteria_id', $kriteriaId)->where('date', $request->date)->where('date', '!=', $id)->exists();
 
                     if ($exists) {
                         return redirect()
@@ -121,15 +161,45 @@ class RekapController extends Controller
                 }
             }
 
-            DB::transaction(function () use ($request, $id) {
+            DB::transaction(function () use ($request, $id, $kurir, $masaKerjaKriteria) {
                 foreach ($request->nilai as $kriteriaId => $nilai) {
-                    if ($nilai !== null) {
-                        Rekap::where('date', $id)
-                            ->where('kriteria_id', $kriteriaId)
-                            ->update([
-                                'nilai' => floor($nilai),
-                                'date' => $request->date,
-                            ]);
+                    // Jika kriteria masa kerja, hitung otomatis
+                    if ($masaKerjaKriteria && (int) $kriteriaId === (int) $masaKerjaKriteria->id) {
+                        $nilaiToStore = $this->hitungMasaKerja($kurir->tanggal_masuk, $request->date);
+                    } else {
+                        if ($nilai === null) {
+                            continue;
+                        }
+                        $nilaiToStore = floor($nilai);
+                    }
+
+                    Rekap::where('date', $id)
+                        ->where('kriteria_id', $kriteriaId)
+                        ->update([
+                            'nilai' => $nilaiToStore,
+                            'date' => $request->date,
+                        ]);
+                }
+
+                // Jika masa kerja tidak dikirim dari view, update/tambahkan secara otomatis
+                if ($masaKerjaKriteria && !array_key_exists($masaKerjaKriteria->id, $request->nilai)) {
+                    $kriteriaId = $masaKerjaKriteria->id;
+                    $nilaiToStore = $this->hitungMasaKerja($kurir->tanggal_masuk, $request->date);
+
+                    $rekapMasaKerja = Rekap::where('date', $id)->where('kriteria_id', $kriteriaId)->first();
+
+                    if ($rekapMasaKerja) {
+                        $rekapMasaKerja->update([
+                            'nilai' => $nilaiToStore,
+                            'date' => $request->date,
+                        ]);
+                    } else {
+                        Rekap::create([
+                            'kurir_id' => $kurir->id,
+                            'kriteria_id' => $kriteriaId,
+                            'nilai' => $nilaiToStore,
+                            'date' => $request->date,
+                        ]);
                     }
                 }
             });
@@ -155,5 +225,13 @@ class RekapController extends Controller
                 ->back()
                 ->with('error', 'Gagal menghapus rekap: ' . $e->getMessage());
         }
+    }
+
+    private function hitungMasaKerja($tanggalMasuk, $tanggalRekap)
+    {
+        $masuk = new \DateTime($tanggalMasuk);
+        $rekap = new \DateTime($tanggalRekap);
+        $interval = $masuk->diff($rekap);
+        return $interval->y; // tahun
     }
 }

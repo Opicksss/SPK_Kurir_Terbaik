@@ -121,9 +121,6 @@
                                                                     </div>
                                                                 @endif
                                                             @endforeach
-                                                            <input type="hidden"
-                                                                name="nilai[{{ $kriterias->where('nama', 'Masa Kerja')->first()->id ?? '' }}]"
-                                                                value="{{ \Carbon\Carbon::parse($kurirs->tanggal_masuk)->diffInYears(now()) }}" />
                                                             <input type="hidden" name="kurir_id" value="{{ $kurirs->id }}">
                                                             <div class="mb-0">
                                                                 <div class="d-flex justify-content-end">
@@ -242,9 +239,6 @@
                                 </div>
                             @endif
                         @endforeach
-                        <input type="hidden"
-                            name="nilai[{{ $kriterias->where('nama', 'Masa Kerja')->first()->id ?? '' }}]"
-                            value="{{ \Carbon\Carbon::parse($kurirs->tanggal_masuk)->diffInYears(now()) }}" />
                         <input type="hidden" name="kurir_id" value="{{ $kurirs->id }}">
                         <div class="mb-0">
                             <div class="d-flex justify-content-end">
