@@ -43,7 +43,7 @@
                                                         $nilai = $rekaps
                                                             ->where('kurir_id', $item->id)
                                                             ->where('kriteria_id', $kriteria->id)
-                                                            ->sortByDesc('created_at')
+                                                            ->sortByDesc('date')
                                                             ->first()->nilai ?? null;
                                                     } else {
                                                         $nilai = $rekaps
