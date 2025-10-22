@@ -141,8 +141,8 @@ class KurirController extends Controller
             $kurir->delete();
 
             // Ambil semua data setelah kode yang dihapus
-            $updateKode = Kurir::whereRaw('CAST(SUBSTRING(kode, 2) AS UNSIGNED) > ?', [$deletedNumber])
-                                             ->orderByRaw('CAST(SUBSTRING(kode, 2) AS UNSIGNED)')
+            $updateKode = Kurir::whereRaw('CAST(SUBSTRING(kode, 3) AS UNSIGNED) > ?', [$deletedNumber])
+                                             ->orderByRaw('CAST(SUBSTRING(kode, 3) AS UNSIGNED)')
                                              ->get();
 
             // Update ulang kode-kode setelahnya

@@ -88,8 +88,8 @@
                                                             </div>
 
                                                             <div class="mb-3">
-                                                                <label>Min</label>
-                                                                <input type="text" class="form-control" name="min_value"
+                                                                <label>Max</label>
+                                                                <input type="text" class="form-control" name="max_value"
                                                                     required placeholder="Masukkan Bobot"
                                                                     value="{{ $item->max_value }}" />
                                                             </div>

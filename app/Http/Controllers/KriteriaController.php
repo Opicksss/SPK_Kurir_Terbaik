@@ -60,9 +60,30 @@ class KriteriaController extends Controller
 
     public function destroy($id)
     {
-        $kriteria = Kriteria::findOrfail($id);
-        $kriteria->delete();
+        try {
+            $kriteria = Kriteria::findOrFail($id);
 
-        return back()->with('success', 'data telah dihapus');
+            // Ambil nomor dari kode (prefix 'C')
+            $deletedNumber = (int) str_replace('C', '', $kriteria->kode);
+
+            // Hapus data
+            $kriteria->delete();
+
+            // Ambil semua data setelah kode yang dihapus
+            $updateKode = Kriteria::whereRaw('CAST(SUBSTRING(kode, 2) AS UNSIGNED) > ?', [$deletedNumber])
+                                             ->orderByRaw('CAST(SUBSTRING(kode, 2) AS UNSIGNED)')
+                                             ->get();
+
+            // Update ulang kode-kode setelahnya
+            foreach ($updateKode as $item) {
+                $currentNumber = (int) str_replace('C', '', $item->kode);
+                $newNumber = $currentNumber - 1;
+                $item->update(['kode' => 'C' . $newNumber]);
+            }
+
+            return redirect()->back()->with('success', 'Kriteria berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus Kriteria. Silakan coba lagi: ' . $e->getMessage());
+        }
     }
 }
