@@ -20,4 +20,9 @@ class Kurir extends Model
     {
         return $this->hasMany(hasilTopsis::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
