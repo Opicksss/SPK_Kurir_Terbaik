@@ -44,7 +44,7 @@
 
 
 
-                            <div class="d-flex justify-content-start mb-3">
+                            <div class="d-flex justify-content-end mb-3">
                                 <a class="font-bold" href="{{ route('forgot') }}">Forgot password?</a>
                             </div>
 
@@ -54,12 +54,6 @@
                             </div>
                         </form>
 
-                    </div>
-
-                    <div class="mt-4 text-center">
-                        <p class="mb-0">Don't have an account ? <a href="auth-register.html"
-                                class="fw-medium text-primary">
-                                Register </a> </p>
                     </div>
                 </div>
             </div>

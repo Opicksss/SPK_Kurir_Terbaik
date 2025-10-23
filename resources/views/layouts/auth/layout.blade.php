@@ -28,6 +28,14 @@
 </head>
 
 <body>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <i class="ri-loader-line spin-icon"></i>
+            </div>
+        </div>
+    </div>
+
     <div class="auth-maintenance d-flex align-items-center min-vh-100">
         <div class="bg-overlay bg-light"></div>
         <div class="container">
