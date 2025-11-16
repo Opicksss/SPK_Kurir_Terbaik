@@ -3,9 +3,9 @@
 
 @section('value')
 
-    <a href="{{ route('login') }}" class="btn btn-outline-primary login-link">Login</a>
+    <a href="{{ route('login') }}" class="btn btn-outline-primary login-link">Sign In</a>
     <div class="container">
-        <div class="main-card mx-auto col-lg-8 col-md-10 col-12">
+        <div class="main-card mx-auto col-lg-8 col-md-12 col-12">
             <h2 class="text-center">Rangking Kurir Terbaik</h2>
             <form method="GET" action="{{ route('home') }}" class="mb-4">
                 <div class="form-group">
