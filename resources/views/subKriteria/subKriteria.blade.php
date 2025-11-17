@@ -12,7 +12,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="m-0">Management Kriteria</h5>
+                                <h5 class="m-0">
+                                    Sub Kriteria >
+                                    <a href="{{ route('kriteria.index') }}" class="text-decoration-none">
+                                        Kriteria
+                                    </a>
+                                </h5>
 
                                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                     data-bs-target="#create">Create</button>

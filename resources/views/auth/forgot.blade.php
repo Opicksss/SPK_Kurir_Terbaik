@@ -39,6 +39,9 @@
                             <div class="mt-4">
                                 <button class="btn btn-primary w-100" type="submit">Krim</button>
                             </div>
+                            <div class="mt-2">
+                                <button type="reset" class="btn btn-outline-secondary w-100">Reset</button>
+                            </div>
 
 
                         </form>
