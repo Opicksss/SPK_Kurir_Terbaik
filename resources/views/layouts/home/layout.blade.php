@@ -10,12 +10,8 @@
 
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="home/assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="home/assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="home/assets/img/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="home/assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="home/assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="home/assets/img/favicons/mstile-150x150.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo-home.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo-home.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- ===============================================-->
@@ -43,6 +39,7 @@
                         <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item px-2"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item px-2"><a class="nav-link" href="#ranking">Ranking</a></li>
                         <li class="nav-item px-2"><a class="nav-link" href="#findUs">Contact</a></li>
                     </ul>
                     </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="{{ route('login') }}">Log In</a>

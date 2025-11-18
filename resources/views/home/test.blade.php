@@ -105,49 +105,6 @@
     <!-- ============================================-->
 
 
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    {{-- <section class="pt-7 pb-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-lg mb-5">
-                    <div class="text-center"><img src="home/assets/img/icons/awards.png" alt="..." />
-                        <h1 class="text-primary mt-4">26+</h1>
-                        <h5 class="text-800">Awards won</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-lg mb-5">
-                    <div class="text-center"><img src="home/assets/img/icons/states.png" alt="..." />
-                        <h1 class="text-primary mt-4">65+</h1>
-                        <h5 class="text-800">States covered</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-lg mb-5">
-                    <div class="text-center"><img src="home/assets/img/icons/clients.png" alt="..." />
-                        <h1 class="text-primary mt-4">689K+</h1>
-                        <h5 class="text-800">Happy clients</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-lg mb-5">
-                    <div class="text-center"><img src="home/assets/img/icons/goods.png" alt="..." />
-                        <h1 class="text-primary mt-4">130M+</h1>
-                        <h5 class="text-800">Goods delivered</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-lg mb-5">
-                    <div class="text-center"><img src="home/assets/img/icons/business.png" alt="..." />
-                        <h1 class="text-primary mt-4">130M+</h1>
-                        <h5 class="text-800">Antar Jeput</h5>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end of .container-->
-    </section><!-- <section> close ============================--> --}}
-    <!-- ============================================-->
-
-
-
     <!-- ============================================-->
     <!-- <section> begin ============================-->
     <section>
@@ -193,6 +150,113 @@
     <!-- ============================================-->
 
 
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section id="ranking">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-12 mb-6 text-center">
+                    <h5 class="text-danger">Rangking Kurir Terbaik</h5>
+                    <h2>Lihat daftar kurir terbaik berdasarkan periode 6 bulan</h2>
+                </div>
+                <div class="main-card mx-auto col-lg-12 col-md-10 col-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            @php
+                                $selectedValue = $selected ?? (request('periode_tahun') ?? '');
+                                $periodLabel = fn($row) => $row->periode == 1
+                                    ? 'Januari - Juni'
+                                    : ($row->periode == 2
+                                        ? 'Juli - Desember'
+                                        : '-');
+                                $badgeClass = fn($rank) => $rank == 1
+                                    ? 'badge bg-success'
+                                    : ($rank == 2
+                                        ? 'badge bg-primary'
+                                        : ($rank == 3
+                                            ? 'badge bg-warning text-dark'
+                                            : 'badge bg-secondary'));
+                            @endphp
+
+                            <form method="GET" action="{{ url()->current() }}#ranking" class="mb-4">
+                                <div class="row g-2">
+                                    <div class="col-sm-8">
+                                        <label for="periode_tahun" class="form-label visually-hidden">Pilih
+                                            Periode</label>
+                                        <select name="periode_tahun" id="periode_tahun" class="form-select select2"
+                                            required>
+                                            <option value="">-- Pilih Periode --</option>
+                                            @foreach ($periodOptions as $opt)
+                                                <option value="{{ $opt['value'] }}"
+                                                    {{ (string) $selectedValue === (string) $opt['value'] ? 'selected' : '' }}>
+                                                    {{ $opt['label'] }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4 d-grid">
+                                        <button type="submit" class="btn btn-primary">Lihat Rangking</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            @if (isset($hasil) && $hasil->count())
+                                <div class="table-responsive">
+                                    <div style="max-height: 330px; overflow-y: auto;">
+                                        <table class="table table-striped table-hover align-middle text-center mb-0"
+                                            style="width:100%;">
+                                            <thead class="table-light" style="position: sticky; top: 0; z-index: 2;">
+                                                <tr>
+                                                    <th style="width:110px">Ranking</th>
+                                                    <th>Nama Kurir</th>
+                                                    <th style="width:230px">Nilai Preferensi</th>
+                                                    <th style="width:90px">Tahun</th>
+                                                    <th style="width:230px">Periode</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($hasil as $row)
+                                                    @php $rank = $row->ranking ?? $loop->iteration; @endphp
+                                                    <tr>
+                                                        <td>
+                                                            <span class="{{ $badgeClass($rank) }}"
+                                                                style="font-size:0.95rem; padding:0.45rem 0.6rem;">
+                                                                #{{ $rank }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="fw-semibold">
+                                                                {{ mb_strtoupper(mb_substr(optional($row->kurir)->name ?? '-', 0, 1, 'UTF-8')) . mb_substr(optional($row->kurir)->name ?? '-', 1, null, 'UTF-8') }}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="small text-muted">Skor</div>
+                                                            <div class="fw-medium">
+                                                                {{ number_format($row->nilai_preferensi ?? 0, 4) }}</div>
+                                                        </td>
+                                                        <td>{{ $row->tahun ?? '-' }}</td>
+                                                        <td>
+                                                            <span class="text-muted">{{ $periodLabel($row) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <div class="alert alert-warning text-center mb-0">
+                                        <div class="fw-semibold mb-1">Data belum tersedia</div>
+                                        <div class="small text-muted">Rangking untuk periode 6 bulan yang dipilih belum
+                                            dipublikasikan.</div>
+                                    </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end of .container-->
+    </section><!-- <section> close ============================-->
+    <!-- ============================================-->
 
     <!-- ============================================-->
     <!-- <section> begin ============================-->
@@ -264,6 +328,7 @@
                     <ul class="list-unstyled mb-md-4 mb-lg-0">
                         <li class="lh-lg"><a class="text-500" href="{{ route('home') }}">Home</a></li>
                         <li class="lh-lg"><a class="text-500" href="#services">Services</a></li>
+                        <li class="lh-lg"><a class="text-500" href="#ranking">Ranking</a></li>
                         <li class="lh-lg"><a class="text-500" href="#findUs">Contact</a></li>
                     </ul>
                 </div>
