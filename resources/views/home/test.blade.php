@@ -424,41 +424,45 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-5 mb-6 text-center">
-                    <h5 class="text-danger">FIND US</h5>
-                    <h2>Access us easily</h2>
+                    <h5 class="text-danger">TEMUKAN KAMI</h5>
+                    <h2>Akses kami dengan mudah</h2>
                 </div>
                 <div class="col-12">
                     <div class="card card-span rounded-2 mb-3">
                         <div class="row">
                             <div class="col-md-6 col-lg-7 d-flex"><img
                                     class="w-100 fit-cover rounded-md-start rounded-top rounded-md-top-0"
-                                    src="home/assets/img/gallery/map.svg" alt="map" /></div>
+                                    src="img/map.png" alt="map" /></div>
                             <div class="col-md-6 col-lg-5 d-flex flex-center">
                                 <div class="card-body">
-                                    <h5>Contact with us</h5>
-                                    <p class="text-700 my-4"> <i
-                                            class="fas fa-map-marker-alt text-warning me-3"></i><span>2277 Lorem Ave, San
-                                            Diego, CA 22553</span></p>
-                                    <p><i class="fas fa-phone-alt text-warning me-3"></i><span class="text-700">Monday -
-                                            Friday: 10 am - 10pm<br /><span class="ps-4">Sunday: 11 am - 9pm
-                                            </span></span></p>
-                                    <p><i class="fas fa-envelope text-warning me-3"> </i><a class="text-700"
-                                            href="mailto:vctung@outlook.com"> info@quriarbox.com</a></p>
+                                    <h5>Hubungi Kami</h5>
+                                    <p class="text-700 my-4"> <i class="fas fa-map-marker-alt text-warning me-3"></i><a
+                                            class="text-700"
+                                            href="https://www.google.com/maps/place/CEODE/@-7.0112479,113.8539888,17z/data=!4m6!3m5!1s0x2dd9e5dca9a9847d:0xb5c4ae5a26e49329!8m2!3d-7.0112479!4d113.8539888!16s%2Fg%2F11rrz3cr43?hl=id-ID&entry=ttu&g_ep=EgoyMDI1MTExMi4wIKXMDSoASAFQAw%3D%3D">
+                                            Jl. Widuri II, Pakalongan, Pajagalan, Kec. Kota Sumenep, Kabupaten Sumenep, Jawa
+                                            Timur 69416</a></p>
+                                    <p><i class="fas fa-phone-alt text-warning me-3"></i><span class="text-700">Senin -
+                                            Minggu : 07.00 - 21.00 WIB</span></p>
                                     <ul class="list-unstyled list-inline mt-5">
-                                        <li class="list-inline-item"><a class="text-decoration-none" href="#!"><i
+                                        <li class="list-inline-item"><a class="text-decoration-none"
+                                                href="https://www.facebook.com/profile.php?id=100070511694086"><i
                                                     class="fab fa-facebook-square fs-2"></i></a></li>
-                                        <li class="list-inline-item"><a class="text-decoration-none" href="#!"><i
+                                        <li class="list-inline-item"><a class="text-decoration-none"
+                                                href="https://www.instagram.com/ceode.id/"><i
                                                     class="fab fa-instagram-square fs-2"></i></a></li>
-                                        <li class="list-inline-item"><a class="text-decoration-none" href="#!"><i
-                                                    class="fab fa-twitter-square fs-2"></i></a></li>
+                                        <li class="list-inline-item"><a class="text-decoration-none"
+                                                href="https://www.tiktok.com/@ceodesumenep?_r=1&_t=ZS-91Uj61wayum"> <i
+                                                    class="fab fa-tiktok fs-2"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center"><button class="btn btn-primary px-5" type="submit"><i
-                                class="fas fa-phone-alt me-2"></i><a class="text-light" href="tel:123-456789">Call us to
-                                delivery 123-456789</a></button></div>
+                                class="fas fa-phone-alt me-2"></i><a class="text-light" href="tel:+6287756200703">Hubungi
+                                kami untuk pengiriman +6287756200703</a></button></div>
                 </div>
             </div>
         </div><!-- end of .container-->
@@ -472,32 +476,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><a class="text-decoration-none"
-                        href="#"><img src="home/assets/img/gallery/footer-logo.png" height="51"
-                            alt="" /></a>
-                    <p class="text-500 my-4">The most trusted Courier<br />company in your area.</p>
+                        href="#"><img src="img/logo.png" height="51" alt="" /></a>
+                    <p class="text-500 my-4">Perusahaan kurir paling terpercaya<br />di wilayah Anda.</p>
                 </div>
                 <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
-                    <h5 class="lh-lg fw-bold mb-4 text-light font-sans-serif">Other links </h5>
-                    <ul class="list-unstyled mb-md-4 mb-lg-0">
-                        <li class="lh-lg"><a class="text-500" href="#!">Blogs</a></li>
-                        <li class="lh-lg"><a class="text-500" href="#!">Movers website</a></li>
-                        <li class="lh-lg"><a class="text-500" href="#!">Traffic Update</a></li>
-                    </ul>
                 </div>
                 <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
-                    <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Services</h5>
-                    <ul class="list-unstyled mb-md-4 mb-lg-0">
-                        <li class="lh-lg"><a class="text-500" href="#!">Corporate goods</a></li>
-                        <li class="lh-lg"><a class="text-500" href="#!">Artworks</a></li>
-                        <li class="lh-lg"><a class="text-500" href="#!">Documents</a></li>
-                    </ul>
                 </div>
                 <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
-                    <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif"> Customer Care</h5>
+                    <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif"> Other links</h5>
                     <ul class="list-unstyled mb-md-4 mb-lg-0">
-                        <li class="lh-lg"><a class="text-500" href="#!">About Us</a></li>
-                        <li class="lh-lg"><a class="text-500" href="#!">Contact US</a></li>
-                        <li class="lh-lg"><a class="text-500" href="#!">Get Update</a></li>
+                        <li class="lh-lg"><a class="text-500" href="{{ route('home') }}">Home</a></li>
+                        <li class="lh-lg"><a class="text-500" href="#services">Services</a></li>
+                        <li class="lh-lg"><a class="text-500" href="#findUs">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -513,7 +504,11 @@
         <div class="container">
             <div class="row justify-content-md-between justify-content-evenly py-4">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
-                    <p class="fs--1 my-2 fw-bold text-200">All rights Reserved &copy; Your Company, 2021</p>
+                    <p class="fs--1 my-2 fw-bold text-200">All rights Reserved &copy; Your Company,
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                    </p>
                 </div>
                 <div class="col-12 col-sm-8 col-md-6">
                     <p class="fs--1 my-2 text-center text-md-end text-200"> Made with&nbsp;<svg
@@ -523,7 +518,7 @@
                                 d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z">
                             </path>
                         </svg>&nbsp;by&nbsp;<a class="fw-bold text-primary" href="https://themewagon.com/"
-                            target="_blank">ThemeWagon </a></p>
+                            target="_blank">D&O Coders </a></p>
                 </div>
             </div>
         </div><!-- end of .container-->

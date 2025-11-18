@@ -11,11 +11,7 @@ use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubKriteriaController;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
-Route::get('/dashboard', function () {
-    return view('welcome');
-});
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
