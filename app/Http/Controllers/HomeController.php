@@ -44,6 +44,6 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.home', compact('hasil', 'periodOptions', 'selected'));
+        return view('home.test', compact('hasil', 'periodOptions', 'selected'));
     }
 }
