@@ -46,12 +46,12 @@
                             <div class="d-flex flex-column h-100 py-0 py-xl-3">
                                 <div class="text-center mb-4">
                                     <a href="{{ route('home') }}" class="">
-                                        <img src="assets/images/logo-dark.png" alt="" height="22"
+                                        <img src="img/logo.png" alt="" height="50"
                                             class="auth-logo logo-dark mx-auto">
-                                        <img src="assets/images/logo-light.png" alt="" height="22"
+                                        <img src="img/logo.png" alt="" height="50"
                                             class="auth-logo logo-light mx-auto">
                                     </a>
-                                    <p class="text-muted mt-2">User Experience & Interface Design Strategy Saas Solution
+                                    <p class="text-muted mt-2">Berbagi Solusi Dalam Satu Aplikasi
                                     </p>
                                 </div>
 
@@ -62,7 +62,7 @@
                                     <p class="mb-0">©
                                         <script>
                                             document.write(new Date().getFullYear())
-                                        </script> Tocly. Crafted with <i
+                                        </script> CEODE. Crafted with <i
                                             class="mdi mdi-heart text-danger"></i> by D&O Coders
                                     </p>
                                 </div>

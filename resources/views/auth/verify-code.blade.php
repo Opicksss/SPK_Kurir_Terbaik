@@ -7,9 +7,10 @@
 @section('content')
     <div class="card my-auto overflow-hidden">
         <div class="row g-0">
-            <div class="col-lg-6">
-                <div class="bg-overlay bg-primary"></div>
-                <div class="h-100 bg-auth align-items-end">
+           <div class="col-lg-6">
+                <div class="bg-overlay" style="background-color: #cf080d;"></div>
+                <div class="h-100 bg-auth d-flex justify-content-center align-items-end">
+                    <img src="{{ asset('img/logo.png') }}" alt="Logo" class="img-fluid mb-4" style="max-width: 250px;">
                 </div>
             </div>
 

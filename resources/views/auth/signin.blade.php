@@ -8,8 +8,9 @@
     <div class="card my-auto overflow-hidden">
         <div class="row g-0">
             <div class="col-lg-6">
-                <div class="bg-overlay bg-primary"></div>
-                <div class="h-100 bg-auth align-items-end">
+                <div class="bg-overlay" style="background-color: #cf080d;"></div>
+                <div class="h-100 bg-auth align-items-end d-flex justify-content-center">
+                    <img src="{{ asset('img/logo.png') }}" alt="Logo" class="img-fluid" style="max-width: 250px;">
                 </div>
             </div>
 
@@ -40,7 +41,6 @@
                                     </span>
                                 </div>
                             </div>
-
 
 
 
