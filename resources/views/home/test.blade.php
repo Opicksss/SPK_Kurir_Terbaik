@@ -154,26 +154,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="card bg-dark text-white py-4 py-sm-0"><img class="w-100"
-                            src="home/assets/img/gallery/video.png" alt="video" />
-                        <div class="card-img-overlay bg-dark-gradient d-flex flex-column flex-center"><img
-                                src="home/assets/img/icons/play.png" width="80" alt="play" />
-                            <h5 class="text-primary">FASTEST DELIVERY</h5>
-                            <p class="text-center">You can get your valuable item in the fastest period of<br
-                                    class="d-none d-sm-block" />time with safety. Because your emergency<br
-                                    class="d-none d-sm-block" />is our first priority.</p><a class="stretched-link"
-                                href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                    <div class="card bg-dark text-white py-4 py-sm-0">
+                        <img class="w-100" src="home/assets/img/gallery/video.png" alt="video" />
+                        <div class="card-img-overlay bg-dark-gradient d-flex flex-column flex-center">
+                            <img src="home/assets/img/icons/play.png" width="80" alt="play" />
+                            <h5 class="text-primary">PENGANTARAN TERCEPAT</h5>
+                            <p class="text-center">
+                                CEODE siap mengantarkan barang berharga Anda dengan cepat dan aman.<br
+                                    class="d-none d-sm-block" />
+                                Karena kebutuhan darurat Anda adalah prioritas utama kami.
+                            </p>
+                            <a class="stretched-link" href="#" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"></a>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content overflow-hidden">
                                         <div class="modal-header p-0">
-                                            <div class="ratio ratio-16x9" id="exampleModalLabel"><iframe
-                                                    src="https://www.youtube.com/embed/TlcP2aTOp-Q" title="YouTube video"
-                                                    allowfullscreen="allowfullscreen"></iframe></div>
+                                            <div class="ratio ratio-16x9" id="exampleModalLabel">
+                                                <iframe src="https://www.youtube.com/embed/8QT6ET7KFMw?si=JZnlmvyqFesxQL0E"
+                                                    title="YouTube video" allowfullscreen="allowfullscreen"></iframe>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer"><button class="btn btn-primary" type="button"
-                                                data-bs-dismiss="modal">Close</button></div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="button"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -182,232 +188,8 @@
                 </div>
             </div>
         </div><!-- end of .container-->
-    </section><!-- <section> close ============================-->
-    <!-- ============================================-->
-
-
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    <section class="py-7">
-        <div class="container-fluid">
-            <div class="row flex-center">
-                <div class="bg-holder bg-size"
-                    style="background-image:url(home/assets/img/gallery/quote.png);background-position:top;background-size:auto;margin-left:-270px;margin-top:-45px;">
-                </div>
-                <!--/.bg-holder-->
-                <div class="col-md-8 col-lg-5 text-center">
-                    <h5 class="text-danger">TESTIMONIAL</h5>
-                    <h2>Our Awesome Clients</h2>
-                </div>
-            </div>
-        </div><!-- end of .container-->
-    </section><!-- <section> close ============================-->
-    <!-- ============================================-->
-
-
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    <section class="overflow-hidden">
-        <div class="container-fluid">
-            <div class="row bg-offcanvas">
-                <div class="col-12">
-                    <div class="swiper-container" data-pagination-target="pagination1">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide h-auto">
-                                <div class="card h-100 card-span p-3">
-                                    <div class="card-body">
-                                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
-                                        <p class="card-text pt-3">I'm loving the look and the very useful included complete
-                                            page templates. Such a time saver!I'm also glad to see Bootstrap v5 support
-                                            coming. Highly recommended.</p>
-                                        <div class="d-xl-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center mb-3"><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i></div>
-                                            <div class="d-flex align-items-center"><img
-                                                    src="home/assets/img/icons/user-1.png" alt="..." />
-                                                <div class="flex-1 ms-3">
-                                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">John Adams</h6>
-                                                    <p class="fs--2 fw-normal mb-0">Ceo</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide h-auto">
-                                <div class="card h-100 card-span p-3">
-                                    <div class="card-body">
-                                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
-                                        <p class="card-text pt-3">This is my first bootstrap template and I've had quite a
-                                            few questions, mostly driven by my own lack of experience. Nevertheless have
-                                            received excellent support from the author, even to my noob question And my
-                                            project is starting now to take shape nicely.</p>
-                                        <div class="d-xl-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center mb-3"><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i></div>
-                                            <div class="d-flex align-items-center"><img
-                                                    src="home/assets/img/icons/user-2.png" alt="..." />
-                                                <div class="flex-1 ms-3">
-                                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">Yves Tanguy</h6>
-                                                    <p class="fs--2 fw-normal mb-0">Chief Executive, DLF</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide h-auto">
-                                <div class="card h-100 card-span p-3">
-                                    <div class="card-body">
-                                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
-                                        <p class="card-text pt-3">I purchased a phone from an e-commerce site, and this
-                                            courier service provider assisted me in getting it delivered to my home. I
-                                            received my phone within one day, and I was really satisfied with their service
-                                            when I received it. </p>
-                                        <div class="d-xl-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center mb-3"><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i></div>
-                                            <div class="d-flex align-items-center"><img
-                                                    src="home/assets/img/icons/user-3.png" alt="..." />
-                                                <div class="flex-1 ms-3">
-                                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">Austin Min</h6>
-                                                    <p class="fs--2 fw-normal mb-0">Designer</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide h-auto">
-                                <div class="card h-100 card-span p-3">
-                                    <div class="card-body">
-                                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
-                                        <p class="card-text pt-3">We’re looking for someone interested in business theory
-                                            and research that’ll help us bridge the gap between our s...</p>
-                                        <div class="d-xl-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center mb-3"><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i></div>
-                                            <div class="d-flex align-items-center"><img
-                                                    src="home/assets/img/icons/user-1.png" alt="..." />
-                                                <div class="flex-1 ms-3">
-                                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">Yves Tanguy</h6>
-                                                    <p class="fs--2 fw-normal mb-0">Ceo</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide h-auto">
-                                <div class="card h-100 card-span p-3">
-                                    <div class="card-body">
-                                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
-                                        <p class="card-text pt-3">Review our community chat for the most frequently asked
-                                            questions and document answers for our product docs.</p>
-                                        <div class="d-xl-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center mb-3"><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i></div>
-                                            <div class="d-flex align-items-center"><img
-                                                    src="home/assets/img/icons/user-2.png" alt="..." />
-                                                <div class="flex-1 ms-3">
-                                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">John Adams</h6>
-                                                    <p class="fs--2 fw-normal mb-0">Chief Executive, DLF</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide h-auto">
-                                <div class="card h-100 card-span p-3">
-                                    <div class="card-body">
-                                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
-                                        <p class="card-text pt-3">I purchased a phone from an e-commerce site, and this
-                                            courier service provider assisted me in getting it delivered to my home. I
-                                            received my phone within one day, and I was really satisfied with their service
-                                            when I received it. </p>
-                                        <div class="d-xl-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center mb-3"><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i><i
-                                                    class="fas fa-star text-primary me-1"></i></div>
-                                            <div class="d-flex align-items-center"><img
-                                                    src="home/assets/img/icons/user-3.png" alt="..." />
-                                                <div class="flex-1 ms-3">
-                                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">Austin Min</h6>
-                                                    <p class="fs--2 fw-normal mb-0">Designer</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination" id="pagination1"></div>
-                </div>
-            </div>
-        </div><!-- end of .container-->
-    </section><!-- <section> close ============================-->
-    <!-- ============================================-->
-
-
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    <section>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-5 col-xl-4"><img src="home/assets/img/illustrations/callback.png"
-                        alt="..." />
-                    <h5 class="text-danger">REQUEST A CALLBACK</h5>
-                    <h2>We will contact in the shortest time.</h2>
-                    <p class="text-muted">Monday to Friday, 9am-5pm.</p>
-                </div>
-                <div class="col-md-6 col-lg-5 col-xl-4">
-                    <form class="row">
-                        <div class="mb-3"><label class="form-label visually-hidden" for="inputName">Name</label><input
-                                class="form-control form-quriar-control" id="inputName" type="text"
-                                placeholder="Name" /></div>
-                        <div class="mb-3"><label class="form-label visually-hidden" for="inputEmail">Another
-                                label</label><input class="form-control form-quriar-control" id="inputEmail"
-                                type="email" placeholder="Email" /></div>
-                        <div class="mb-5"><label class="form-label visually-hidden"
-                                for="validationTextarea">Message</label>
-                            <textarea class="form-control form-quriar-control is-invalid border-400" id="validationTextarea"
-                                placeholder="Message" style="height: 150px" required="required"></textarea>
-                        </div>
-                        <div class="d-grid"> <button class="btn btn-primary" type="submit">Send Message<i
-                                    class="fas fa-paper-plane ms-2"></i></button></div>
-                    </form>
-                </div>
-            </div>
-        </div><!-- end of .container-->
-    </section><!-- <section> close ============================-->
+    </section>
+    <!-- <section> close ============================-->
     <!-- ============================================-->
 
 
