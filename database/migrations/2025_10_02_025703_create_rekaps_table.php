@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('rekaps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kriteria_id')->nullable()->constrained('kriterias')->nullOnDelete();
-            $table->foreignId('kurir_id')->nullable()->constrained('kurirs')->nullOnDelete();
+            $table->foreignId('kriteria_id')->constrained('kriterias')->cascadeOnDelete();
+            $table->foreignId('kurir_id')->constrained('kurirs')->cascadeOnDelete();
             $table->integer('nilai')->nullable();
             $table->date('date');
             $table->timestamps();
