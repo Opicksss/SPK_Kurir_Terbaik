@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Admin management')
+@section('title', 'Admin Management')
 
 @section('content')
     <div class="page-content">
