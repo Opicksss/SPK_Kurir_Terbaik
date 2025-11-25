@@ -132,12 +132,14 @@ class RekapController extends Controller
     {
         try {
             $request->validate([
+                'kurir_id' => 'required|exists:kurirs,id',
                 'date' => 'required|date',
                 'nilai' => 'required|array',
                 'nilai.*' => 'nullable|numeric|min:0',
             ]);
 
-            $rekaps = Rekap::where('date', $id)->get();
+            $rekaps = Rekap::where('date', $id)->where('kurir_id', $request->kurir_id)->get();
+
             if ($rekaps->isEmpty()) {
                 return redirect()->back()->with('error', 'Data rekap tidak ditemukan.');
             }
@@ -175,6 +177,7 @@ class RekapController extends Controller
 
                     Rekap::where('date', $id)
                         ->where('kriteria_id', $kriteriaId)
+                        ->where('kurir_id', $request->kurir_id)
                         ->update([
                             'nilai' => $nilaiToStore,
                             'date' => $request->date,
@@ -186,7 +189,7 @@ class RekapController extends Controller
                     $kriteriaId = $masaKerjaKriteria->id;
                     $nilaiToStore = $this->hitungMasaKerja($kurir->tanggal_masuk, $request->date);
 
-                    $rekapMasaKerja = Rekap::where('date', $id)->where('kriteria_id', $kriteriaId)->first();
+                    $rekapMasaKerja = Rekap::where('date', $id)->where('kriteria_id', $kriteriaId)->where('kurir_id', $request->kurir_id)->first();
 
                     if ($rekapMasaKerja) {
                         $rekapMasaKerja->update([
