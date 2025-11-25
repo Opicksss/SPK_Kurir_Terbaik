@@ -218,10 +218,11 @@ class RekapController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         try {
-            Rekap::where('date', $id)->delete();
+            Rekap::where('date', $id)->where('kurir_id', $request->kurir_id)->delete();
+
             return redirect()->back()->with('success', 'Rekap nilai berhasil dihapus.');
         } catch (\Exception $e) {
             return redirect()

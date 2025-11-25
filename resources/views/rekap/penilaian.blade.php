@@ -178,8 +178,8 @@
                                                             style="display: inline;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-outline-danger">Delete</button>
+                                                            <input type="hidden" name="kurir_id" value="{{ $kurirs->id }}">
+                                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
