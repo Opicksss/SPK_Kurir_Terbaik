@@ -125,33 +125,6 @@
                                                                 value="{{ $item->email }}" />
                                                         </div>
                                                     </div>
-
-                                                    <div class="mb-3">
-                                                        <label>Password</label>
-                                                        <div>
-                                                            <input type="password" class="form-control"
-                                                                name="password" />
-                                                        </div>
-                                                        <div class="mt-2">
-                                                            <input type="password" class="form-control"
-                                                                data-parsley-equalto="#pass2"
-                                                                name="password_confirmation" />
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="mb-0">
-                                                        <div class="d-flex justify-content-end">
-                                                            <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light me-1">
-                                                                Submit
-                                                            </button>
-                                                            <button type="reset"
-                                                                class="btn btn-secondary waves-effect">
-                                                                Reset
-                                                            </button>
-                                                        </div>
-                                                    </div>
                                                 </form>
                                             </div>
                                         </div><!-- /.modal-content -->

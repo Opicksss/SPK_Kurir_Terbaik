@@ -35,7 +35,7 @@ class KurirController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'alamat' => 'nullable|string|max:255',
-                'nomor' => 'nullable|string|max:20',
+                'nomor' => 'nullable|numeric|digits_between:10,20',
                 'tanggal_masuk' => 'required|date',
             ]);
 
@@ -74,7 +74,7 @@ class KurirController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'alamat' => 'nullable|string|max:255',
-                'nomor' => 'nullable|string|max:20',
+                'nomor' => 'nullable|numeric|digits_between:10,20',
                 'tanggal_masuk' => 'required|date',
             ]);
 

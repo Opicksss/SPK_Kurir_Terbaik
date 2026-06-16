@@ -14,6 +14,7 @@ class AdminController extends Controller
         return view('admin.index', compact('users'));
     }
 
+
     public function store(Request $request)
     {
         try {
@@ -47,7 +48,7 @@ class AdminController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-                'password' => 'nullable|string|min:8|confirmed',
+                // 'password' => 'nullable|string|min:8|confirmed',
             ]);
 
             $user->name = $request->name;

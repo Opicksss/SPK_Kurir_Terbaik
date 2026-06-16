@@ -70,6 +70,30 @@
                             </button>
                         </div>
 
+                        <div class="dropdown d-inline-block ms-1">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{{ asset('img/profilDefault.jpg') }}"
+                                    alt="Header Avatar" height="36" width="36">
+                                <span class="d-none d-xl-inline-block ms-1 fw-semibold">
+                                    @auth
+                                        {{ Auth::user()->name }}
+                                    @endauth
+                                </span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="{{ route('profile', ['id' => auth()->id()]) }}"><i
+                                        class="mdi mdi-account-circle text-muted font-size-16 align-middle me-1"></i> <span
+                                        class="align-middle">Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
+                                        class="mdi mdi-logout text-danger font-size-16 align-middle me-1"></i> <span
+                                        class="align-middle text-danger">Logout</span></a>
+                            </div>
+                        </div>
+
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
                                 <i class="ri-settings-2-line"></i>

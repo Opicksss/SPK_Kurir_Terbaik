@@ -85,7 +85,7 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label>Nomor Hp</label>
-                                                                <input type="text" class="form-control" name="nomor"
+                                                                <input type="tel" class="form-control" name="nomor"
                                                                     required placeholder="Masukkan Nomor Hp"
                                                                     value="{{ $item->nomor }}" />
                                                             </div>

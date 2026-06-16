@@ -22,6 +22,19 @@
                             <p class="text-muted">Sign in to continue to Tocly.</p>
                         </div>
 
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         <form action="{{ route('login-proses') }}" method="POST" class="auth-input">
                             @csrf
 
@@ -51,6 +64,10 @@
                             <div class="mt-3">
                                 <button class="btn btn-primary w-100" type="submit">Sign
                                     In</button>
+                            </div>
+
+                             <div class="mt-3">
+                                <button class="btn btn-primary w-100" type="reset">Reset</button>
                             </div>
                         </form>
 

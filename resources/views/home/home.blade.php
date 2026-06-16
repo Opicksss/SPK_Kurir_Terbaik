@@ -18,8 +18,7 @@
                         Nuswantara. CEODE mulai beroperasi pada 1 November 2019 dan berfokus pada layanan pengantaran cepat
                         oleh kurir di wilayah Sumenep.
                         <br />Layanan ini beroperasi di Jl. Widuri 02, Bangselok, Sumenep.
-                    </p><a class="btn btn-primary me-2" href="#!" role="button">Get started<i
-                            class="fas fa-arrow-right ms-2"></i></a>
+                   
                 </div>
             </div>
         </div>

@@ -89,38 +89,6 @@
         <!-- Sidebar -->
     </div>
 
-    <div class="dropdown px-3 sidebar-user sidebar-user-info">
-        <button type="button" class="btn w-100 px-0 border-0" id="page-header-user-dropdown" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <span class="d-flex align-items-center">
-                <div class="flex-shrink-0">
-                    <img src="img/profilDefault.jpg" class="img-fluid header-profile-user rounded-circle"
-                        alt="">
-                </div>
 
-                <div class="flex-grow-1 ms-2 text-start">
-                    <span class="ms-1 fw-medium user-name-text">
-                        @auth
-                            {{ Auth::user()->name }}
-                        @endauth
-                    </span>
-                </div>
-
-                <div class="flex-shrink-0 text-end">
-                    <i class="mdi mdi-dots-vertical font-size-16"></i>
-                </div>
-            </span>
-        </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <!-- item-->
-            <a class="dropdown-item" href="{{ route('profile', ['id' => auth()->id()]) }}"><i
-                    class="mdi mdi-account-circle text-muted font-size-16 align-middle me-1"></i> <span
-                    class="align-middle">Profile</span></a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('logout') }}"><i
-                    class="mdi mdi-logout text-danger font-size-16 align-middle me-1"></i> <span
-                    class="align-middle">Logout</span></a>
-        </div>
-    </div>
 
 </div>

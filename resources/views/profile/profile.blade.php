@@ -52,20 +52,36 @@
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="current_password" class="form-label">Password Lama</label>
-                                                    <input type="password" class="form-control" id="current_password"
-                                                           name="current_password" required>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" id="current_password"
+                                                               name="current_password" required>
+                                                        <span class="input-group-text toggle-password" data-target="current_password" style="cursor: pointer;">
+                                                            <i class="fa fa-eye toggle-password-icon"></i>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="new_password" class="form-label">Password Baru</label>
-                                                    <input type="password" class="form-control" id="new_password"
-                                                           name="new_password" required minlength="6">
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" id="new_password"
+                                                               name="new_password" required minlength="6">
+                                                        <span class="input-group-text toggle-password" data-target="new_password" style="cursor: pointer;">
+                                                            <i class="fa fa-eye toggle-password-icon"></i>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="new_password_confirmation" class="form-label">Konfirmasi Password Baru</label>
-                                                    <input type="password" class="form-control" id="new_password_confirmation"
-                                                           name="new_password_confirmation" required minlength="6">
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" id="new_password_confirmation"
+                                                               name="new_password_confirmation" required minlength="6">
+                                                        <span class="input-group-text toggle-password" data-target="new_password_confirmation" style="cursor: pointer;">
+                                                            <i class="fa fa-eye toggle-password-icon"></i>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-warning">Ubah Password</button>
+                                                 <button type="reset" class="btn btn-secondary">Reset</button>
                                             </form>
                                         </div>
                                     </div>
@@ -77,4 +93,24 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButtons = document.querySelectorAll('.toggle-password');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.getElementById(targetId);
+                const toggleIcon = this.querySelector('.toggle-password-icon');
+                
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                toggleIcon.classList.toggle('fa-eye');
+                toggleIcon.classList.toggle('fa-eye-slash');
+            });
+        });
+    });
+</script>
 @endsection
