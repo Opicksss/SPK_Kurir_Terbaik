@@ -48,7 +48,7 @@
 </head>
 
 <body data-sidebar="light">
-    
+
     <div id="preloader">
         <div id="status">
             <div class="spinner">

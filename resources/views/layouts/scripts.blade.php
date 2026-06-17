@@ -17,11 +17,17 @@
             {
                 extend: 'excel',
                 exportOptions: {
-                    columns: ':not(.no-export)' 
+                    columns: ':not(.no-export)'
                 }
             },
             {
                 extend: 'pdf',
+                exportOptions: {
+                    columns: ':not(.no-export)'
+                }
+            },
+            {
+                extend: 'print',
                 exportOptions: {
                     columns: ':not(.no-export)'
                 }

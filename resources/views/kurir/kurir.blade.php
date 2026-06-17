@@ -24,6 +24,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Kode</th>
+                                        <th>Id Kurir</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Nomor Hp</th>
@@ -37,6 +38,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode }}</td>
+                                            <td>{{ $item->kurir_id }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->alamat }}</td>
                                             <td>{{ $item->nomor }}</td>

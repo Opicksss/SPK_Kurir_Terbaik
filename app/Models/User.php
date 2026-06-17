@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'user_id',
     ];
 
     /**
@@ -56,5 +57,14 @@ class User extends Authenticatable
     public function kurir()
     {
         return $this->hasOne(Kurir::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            $user->update([
+                'user_id' => 'USR' . str_pad($user->id, 6, '0', STR_PAD_LEFT)
+            ]);
+        });
     }
 }
